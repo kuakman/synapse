@@ -1,0 +1,14 @@
+{
+	"extends": "tslint:recommended",
+	"rules": {
+		"no-console": [false],
+		"indent": [true, "tabs", 4],
+		"trailing-comma": [true, {
+			"multiline": {
+				"objects": "never"
+			},
+			"esSpecCompliant": true,
+			"singleline": "never"
+		}]
+	}
+}
