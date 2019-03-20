@@ -12,6 +12,31 @@
   "project": {
     "source": "./src",
     "target": "./public",
+    "plugins": [
+      {
+        "name": "includepaths",
+        "options": {
+          "include": {
+            "systemjs": "./node_modules/systemjs/dist/system.js"
+          }
+        }
+      },
+      {
+        "name": "node-resolve",
+        "options": {
+          "module": true,
+          "jsnext": true,
+          "main": true,
+          "browser": true
+        }
+      },
+      {
+        "name": "commonjs",
+        "options": {
+          "include": "node_modules/**"
+        }
+      }
+    ],
     "html": {
       "pattern": "**/*",
       "srcExtesion": ".nunjucks",
@@ -23,18 +48,26 @@
         "js/libraries/libraries-dev.ts",
         "js/libraries/libraries.ts"
       ],
-      "output": { "format": "system" }
+      "output": {
+        "format": "system"
+      }
     },
     "dev": {
       "libs": [
         "js/libraries/libraries-dev.ts",
         "js/libraries/libraries.ts"
       ],
-      "output": { "format": "system" }
+      "output": {
+        "format": "system"
+      }
     },
     "prod": {
-      "libs": ["js/libraries/libraries.ts"],
-      "output": { "format": "system" }
+      "libs": [
+        "js/libraries/libraries.ts"
+      ],
+      "output": {
+        "format": "system"
+      }
     }
   },
   "repository": {
@@ -62,6 +95,9 @@
     "fs-extra": "7.0.1",
     "nunjucks": "3.2.0",
     "rollup": "1.6.0",
+    "rollup-plugin-commonjs": "9.2.1",
+    "rollup-plugin-includepaths": "0.2.3",
+    "rollup-plugin-node-resolve": "4.0.1",
     "serve-handler": "5.0.8",
     "ts-node": "8.0.3",
     "tslint": "5.13.1",

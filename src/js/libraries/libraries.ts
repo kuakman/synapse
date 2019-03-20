@@ -1,5 +1,5 @@
 /**
- * Production Third Party Libraires
+ * Production Third Party Libraries
  */
 import "backbone";
 import "incremental-dom";

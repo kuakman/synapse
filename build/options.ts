@@ -13,6 +13,7 @@ export interface IOptions {
 export interface IConfiguration {
 	source: string;
 	target: string;
+	plugins: any;
 	sourceHtml: string;
 	targetHtml: string;
 	sourceLibs: string[];
@@ -42,9 +43,9 @@ const resolvePaths = (opts: IOptions): IOptions => {
 };
 
 export const getConfiguration = (opts: IOptions): IConfiguration => {
-	const { html, source, target } = opts.project;
+	const { html, source, target, plugins } = opts.project;
 	const environment = opts.project[opts.env];
-	return Object.assign({ output: environment.output, source, target }, {
+	return Object.assign({ output: environment.output, source, target, plugins }, {
 		sourceHtml: resolve(opts.cwd, source, html.pattern + html.srcExtension),
 		sourceLibs: environment.libs.map((path: string) => resolve(opts.cwd, source, path)),
 		targetHtml: resolve(opts.cwd, source, html.pattern + html.outExtension),
