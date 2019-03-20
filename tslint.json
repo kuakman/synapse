@@ -9,6 +9,8 @@
 			},
 			"esSpecCompliant": true,
 			"singleline": "never"
-		}]
+		}],
+		"no-var-requires": false,
+		"curly": [true, "ignore-same-line"]
 	}
 }
