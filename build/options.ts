@@ -4,6 +4,12 @@ import { resolve } from "path";
 import { OutputOptions } from "rollup";
 import { ServeConfiguration } from "serve-handler";
 
+type HTML = {
+	path: string;
+	outExtension: string;
+	srcExtension: string;
+};
+
 export interface IOptions {
 	[key: string]: any;
 	clean: string;
@@ -12,9 +18,11 @@ export interface IOptions {
 }
 
 export interface IConfiguration {
+	cwd: string;
 	source: string;
 	target: string;
 	plugins: any;
+	html: HTML;
 	sourceHtml: string;
 	targetHtml: string;
 	sourceLibs: string[];
@@ -56,10 +64,16 @@ export const getServer = (opts: IOptions): IServer => {
 export const getConfiguration = (opts: IOptions): IConfiguration => {
 	const { html, source, target, plugins } = opts.project;
 	const environment = opts.project[opts.env];
-	return Object.assign({ output: environment.output, source, target, plugins }, {
-		sourceHtml: resolve(opts.cwd, source, html.pattern + html.srcExtension),
+	return Object.assign({
+		cwd: opts.cwd,
+		html,
+		output: environment.output,
+		plugins,
+		source,
+		sourceHtml: resolve(opts.cwd, source, html.path),
 		sourceLibs: environment.libs.map((path: string) => resolve(opts.cwd, source, path)),
-		targetHtml: resolve(opts.cwd, source, html.pattern + html.outExtension),
+		target,
+		targetHtml: resolve(opts.cwd, target, html.path),
 		targetLibs: environment.libs.map((path: string) => resolve(opts.cwd, target, path))
 	});
 };

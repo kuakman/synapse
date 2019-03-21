@@ -1,0 +1,3 @@
+{% extends "./common/_master.nunjucks" %}
+
+{% block title %}Index Title{% endblock %}

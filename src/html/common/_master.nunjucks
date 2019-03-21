@@ -1,0 +1,9 @@
+<!doctype HTML>
+<html lang="en">
+	<head>
+		<title>{% block title %} Default Title {% endblock %}</title>
+	</head>
+	<body>
+		<span>Version: {{ version }}</span>
+	</body>
+</html>

@@ -24,7 +24,7 @@
 		"paths": {
 			"systemjs": ["node_modules/systemjs/dist/system.js"]
 		},
-		"types": ["./node_modules/@types", "./node_modules/@types/node"],
+		"types": ["./node_modules/@types", "./node_modules/@types/node", "./@types/serve-handler"],
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"inlineSourceMap": true,
