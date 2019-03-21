@@ -2,6 +2,7 @@ import args from "args";
 import fs from "fs";
 import { resolve } from "path";
 import { OutputOptions } from "rollup";
+import { ServeConfiguration } from "serve-handler";
 
 export interface IOptions {
 	[key: string]: any;
@@ -19,6 +20,11 @@ export interface IConfiguration {
 	sourceLibs: string[];
 	targetLibs: string[];
 	output: OutputOptions;
+}
+
+export interface IServer {
+	config: ServeConfiguration;
+	port: number;
 }
 
 const getPackage = () => {
@@ -40,6 +46,11 @@ const resolvePaths = (opts: IOptions): IOptions => {
 			target: resolve(process.cwd(), project.target)
 		}
 	});
+};
+
+export const getServer = (opts: IOptions): IServer => {
+	const { port, ...config } = opts.project.server;
+	return { port, config } as IServer;
 };
 
 export const getConfiguration = (opts: IOptions): IConfiguration => {

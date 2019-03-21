@@ -11,6 +11,8 @@
 			"singleline": "never"
 		}],
 		"no-var-requires": false,
-		"curly": [true, "ignore-same-line"]
+		"curly": [true, "ignore-same-line"],
+		"interface-name": false,
+		"interface-over-type-literal": false
 	}
 }
