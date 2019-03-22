@@ -2,7 +2,7 @@
  * Test Profile
  */
 import { resolve } from "path";
-import {getConfiguration, IConfiguration, IOptions} from "../options";
+import {getConfiguration, IConfiguration, IOptions} from "../common/options";
 
 const commonPath = resolve("..", "common");
 

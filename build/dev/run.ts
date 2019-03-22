@@ -2,7 +2,7 @@
  * Dev Profile
  */
 import { resolve } from "path";
-import { getConfiguration, getServer, IConfiguration, IOptions } from "../options";
+import { getConfiguration, getServer, IConfiguration, IOptions } from "../common/options";
 
 const commonPath = resolve("build", "common");
 
