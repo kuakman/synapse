@@ -3,7 +3,7 @@
  */
 import colors from "colors";
 import { resolve } from "path";
-import get, { IOptions } from "./build/common/options";
+import get, { IOptions } from "./lib/common/options";
 
 const opts: IOptions = get();
 console.log(colors.black.bold.bgGreen(`[${opts.env}] Running...`));

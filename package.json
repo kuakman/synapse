@@ -1,106 +1,30 @@
 {
-  "name": "backbone-idom",
+  "name": "synapse",
   "version": "1.0.0",
-  "description": "Backbone Incremental Dom Prototype",
-  "main": "main.ts",
+  "description": "Agnostic CLI tool that automates pipeline flow via commands for web development",
+  "main": "bin/main.ts",
   "scripts": {
-    "test": "ts-node --project tsconfig-tasks.json main.ts --env=dev",
-    "dev": "ts-node --project tsconfig-tasks.json main.ts --env=dev",
-    "prod": "ts-node --project tsconfig-tasks.json main.ts --env=prod",
-    "build": "ts-node --project tsconfig-tasks.json main.ts --env=build"
-  },
-  "project": {
-    "source": "./src",
-    "target": "./public",
-    "system": "./js/system.config.js",
-    "server": {
-      "public": "./public",
-      "rewrites": [
-        {
-          "source": ":url.html",
-          "destination": "html/:url.html"
-        }
-      ],
-      "cleanUrls": true,
-      "port": 3000
-    },
-    "plugins": [
-      {
-        "name": "includepaths",
-        "options": {
-          "include": {
-            "systemjs": "./node_modules/systemjs/dist/s.js"
-          }
-        }
-      },
-      {
-        "name": "node-resolve",
-        "options": {
-          "module": true,
-          "jsnext": true,
-          "main": true,
-          "browser": true
-        }
-      },
-      {
-        "name": "commonjs",
-        "options": {
-          "include": "node_modules/**"
-        }
-      }
-    ],
-    "html": {
-      "path": "./html",
-      "srcExtension": ".nunjucks",
-      "outExtension": ".html"
-    },
-    "test": {
-      "libs": [
-        "js/libraries/libraries-test.ts",
-        "js/libraries/libraries-dev.ts",
-        "js/libraries/libraries-prod.ts"
-      ],
-      "output": {
-        "format": "system"
-      }
-    },
-    "dev": {
-      "libs": [
-        "js/libraries/libraries-dev.ts",
-        "js/libraries/libraries-prod.ts"
-      ],
-      "output": {
-        "format": "system"
-      }
-    },
-    "prod": {
-      "libs": [
-        "js/libraries/libraries-prod.ts"
-      ],
-      "output": {
-        "format": "system"
-      }
-    }
+    "test": "ts-node --project tsconfig-tasks.json main.ts --env=test",
+    "integration": "ts-node --project tsconfig-tasks.json main.ts --env=integration",
+    "release": "ts-node --project tsconfig-tasks.json main.ts --env=build"
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "git@github.com:kuakman/synapse.git"
   },
   "keywords": [
-    "backbone",
-    "incremental-dom"
+    "cli",
+    "pipeline",
+    "development-tools"
   ],
   "author": "Patricio Ferreira <3dimentionar@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
     "@types/args": "3.0.0",
-    "@types/backbone": "1.3.46",
     "@types/chai": "4.1.7",
     "@types/deep-extend": "^0.4.31",
     "@types/fs-extra": "5.0.5",
     "@types/glob": "7.1.1",
-    "@types/incremental-dom": "0.5.0",
-    "@types/jquery": "3.3.29",
     "@types/json5": "0.0.30",
     "@types/micro": "7.3.3",
     "@types/mocha": "5.2.6",
@@ -108,14 +32,19 @@
     "@types/nunjucks": "3.1.1",
     "@types/sinon": "7.0.10",
     "@types/systemjs": "0.20.6",
-    "@types/underscore": "1.8.13",
-    "args": "5.0.1",
     "chai": "4.2.0",
+    "mocha": "6.0.2",
+    "sinon": "7.3.0",
+    "ts-node": "8.0.3",
+    "tslint": "5.13.1",
+    "typescript": "3.3.3333"
+  },
+  "dependencies": {
+    "args": "5.0.1",
     "colors": "1.3.3",
     "fs-extra": "7.0.1",
     "json5": "2.1.0",
     "micro": "9.3.3",
-    "mocha": "6.0.2",
     "nunjucks": "3.2.0",
     "plugin-typescript": "8.0.0",
     "rollup": "1.6.0",
@@ -123,18 +52,7 @@
     "rollup-plugin-includepaths": "0.2.3",
     "rollup-plugin-node-resolve": "4.0.1",
     "serve-handler": "5.0.8",
-    "sinon": "7.3.0",
-    "systemjs-hmr": "2.0.9",
-    "ts-node": "8.0.3",
-    "tslint": "5.13.1",
-    "typescript": "3.3.3333"
-  },
-  "dependencies": {
-    "backbone": "1.4.0",
-    "incremental-dom": "0.6.0",
-    "jquery": "3.3.1",
     "systemjs": "3.0.1",
-    "tachyons": "4.11.1",
-    "underscore": "1.9.1"
+    "systemjs-hmr": "2.0.9"
   }
 }

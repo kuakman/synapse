@@ -1,26 +1,35 @@
-## Development Pipeline
+## Synapse
+
+```TODO: Project Description```
+
+#### Available CLI Commands
+
+* ```synapse test``` - Runs Unit Tests
+* ```synapse dev``` - Runs Project in Dev mode
+* ```synapse prod``` - Runs Project in Prod mode
+* ```synapse release``` - Builds the project for releasing
 
 #### Common
+* Clean
 * Package.json
 * Configuration
 
 #### Production
-* Clean
 * Libraries (prod)
 * SystemJs Config Read/Write
 * Templates
 * Serve
 
 #### Dev
-* Clean
 * Libraries (dev + prod)
 * SystemJs Config Read/Write
 * Templates
 * Serve
 
 #### Test
-* Clean
 * Libraries (test + dev + prod)
 * SystemJs Config Read/Write
 * Templates
 * Test Runner
+
+```TODO Wiki```
