@@ -28,6 +28,7 @@ export interface IConfiguration {
 	sourceLibs: string[];
 	targetLibs: string[];
 	output: OutputOptions;
+	system: string;
 }
 
 export interface IServer {
@@ -62,7 +63,7 @@ export const getServer = (opts: IOptions): IServer => {
 };
 
 export const getConfiguration = (opts: IOptions): IConfiguration => {
-	const { html, source, target, plugins } = opts.project;
+	const { html, source, target, plugins, system } = opts.project;
 	const environment = opts.project[opts.env];
 	return Object.assign({
 		cwd: opts.cwd,
@@ -74,7 +75,8 @@ export const getConfiguration = (opts: IOptions): IConfiguration => {
 		sourceLibs: environment.libs.map((path: string) => resolve(opts.cwd, source, path)),
 		target,
 		targetHtml: resolve(opts.cwd, target, html.path),
-		targetLibs: environment.libs.map((path: string) => resolve(opts.cwd, target, path))
+		targetLibs: environment.libs.map((path: string) => resolve(opts.cwd, target, path)),
+		system
 	});
 };
 

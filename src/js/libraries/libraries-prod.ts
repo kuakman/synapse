@@ -5,5 +5,4 @@ import "backbone";
 import "incremental-dom";
 import "jquery";
 import "systemjs";
-import "tachyons";
 import "underscore";

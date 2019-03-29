@@ -3,8 +3,9 @@
  */
 import colors from "colors";
 import * as fs from "fs-extra";
-import { OutputOptions, Plugin, rollup, RollupBuild, RollupOptions } from "rollup";
-import { IConfiguration } from "../options";
+import { OutputOptions, Plugin, rollup, RollupOptions } from "rollup";
+import getBundles from "./bundles";
+import { IConfiguration } from "./options";
 
 const toJs = (file: string): string => {
 	return file.replace(/\.(ts|tsx)$/, ".js");
@@ -38,10 +39,11 @@ const createBuilds = (config: IConfiguration): RollupOptions[] => {
 export const bundle = async (config: IConfiguration): Promise<any> => {
 	if (pathsExists(...config.targetLibs)) return console.log(colors.green("Using existing Libraries..."));
 	console.log(colors.yellow("Building Libraries..."));
-	return await Promise.all(createBuilds(config).map((opts: RollupOptions) => {
+	return await Promise.all(createBuilds(config).map(async (opts: RollupOptions) => {
 		console.log(colors.cyan(`Building ${opts.output!.file}`));
-		return rollup(opts).then((build: RollupBuild) => {
-			build.generate(opts.output!).then(() => build.write(opts.output!));
-		});
+		const build = await rollup(opts);
+		await build.generate(opts.output!);
+		await build.write(opts.output!);
+		return getBundles(config.target, opts.output, build.cache.modules);
 	}));
 };

@@ -6,7 +6,7 @@ import * as fs from "fs-extra";
 import glob from "glob";
 import { Environment, FileSystemLoader } from "nunjucks";
 import { resolve } from "path";
-import { IConfiguration, IOptions } from "../options";
+import { IConfiguration, IOptions } from "./options";
 
 const readDir = (config: IConfiguration) => {
 	const pattern: string = resolve(config.sourceHtml, `**/!(_)*${config.html.srcExtension}`);

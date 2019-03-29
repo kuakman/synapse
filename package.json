@@ -12,6 +12,7 @@
   "project": {
     "source": "./src",
     "target": "./public",
+    "system": "./js/system.config.js",
     "server": {
       "public": "./public",
       "rewrites": [
@@ -95,10 +96,12 @@
     "@types/args": "3.0.0",
     "@types/backbone": "1.3.46",
     "@types/chai": "4.1.7",
+    "@types/deep-extend": "^0.4.31",
     "@types/fs-extra": "5.0.5",
     "@types/glob": "7.1.1",
     "@types/incremental-dom": "0.5.0",
     "@types/jquery": "3.3.29",
+    "@types/json5": "0.0.30",
     "@types/micro": "7.3.3",
     "@types/mocha": "5.2.6",
     "@types/node": "11.11.0",
@@ -110,6 +113,7 @@
     "chai": "4.2.0",
     "colors": "1.3.3",
     "fs-extra": "7.0.1",
+    "json5": "2.1.0",
     "micro": "9.3.3",
     "mocha": "6.0.2",
     "nunjucks": "3.2.0",

@@ -2,26 +2,35 @@
  * SystemJs
  */
 import colors from "colors";
-import { IConfiguration } from "../options";
+import deepExtend from "deep-extend";
+import * as fs from "fs-extra";
+import json5 from "json5";
+import { resolve } from "path";
+import { IConfiguration } from "./options";
 
-const read = (): Buffer | void => {
-	return;
+const openPattern: string = "SystemJS.config(";
+const closePattern: string = ")";
+
+const read = (content: string): JSON => {
+	const start: number = content.indexOf(openPattern);
+	const end: number = content.lastIndexOf(closePattern);
+	return json5.parse(content.toString().substring(start + openPattern.length, end));
 };
 
-const inject = (): string | void => {
-	return;
+const decorate = (existing: JSON, ...systemConfigs: JSON[]): JSON => {
+	return systemConfigs.reduce((memo: JSON, config: JSON) => deepExtend(memo, config), existing);
 };
 
-const write = (): void => {
-	return;
+const write = (target: string, content: string, config: JSON): void => {
+	let out = content.substring(0, content.indexOf(openPattern) + openPattern.length);
+	out += json5.stringify(config, null, 2);
+	out += closePattern + ";";
+	fs.writeFileSync(target, out);
 };
 
-export const orocess = async (bundles: any, config: IConfiguration): Promise<void> => {
+export const process = async (config: IConfiguration, systemConfigs: JSON[]): Promise<void> => {
 	console.log(colors.yellow("Writing SystemJs Configuration..."));
-	console.log(bundles);
-	// TODO:
-	// 1. Read system.config.js
-	// 2. Inject Bundles for the given environment
-	// 3. Write out system.config.js to target public/js
-	return;
+	const content: string = fs.readFileSync(resolve(config.source, config.system)).toString();
+	const target = resolve(config.target, config.system);
+	return await write(target, content, decorate(read(content), ...systemConfigs));
 };

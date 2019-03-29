@@ -3,7 +3,7 @@
  */
 import colors from "colors";
 import * as fs from "fs-extra";
-import { IConfiguration, IOptions } from "../options";
+import { IConfiguration, IOptions } from "./options";
 
 export const run = async (config: IConfiguration, opts: IOptions): Promise<void> => {
 	if (opts.clean) {
