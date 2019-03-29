@@ -2,11 +2,12 @@
   "name": "synapse",
   "version": "1.0.0",
   "description": "Agnostic CLI tool that automates pipeline flow via commands for web development",
-  "main": "bin/main.ts",
+  "main": "bin/synapse",
   "scripts": {
-    "test": "ts-node --project tsconfig-tasks.json main.ts --env=test",
-    "integration": "ts-node --project tsconfig-tasks.json main.ts --env=integration",
-    "release": "ts-node --project tsconfig-tasks.json main.ts --env=build"
+    "dev": "DEBUG=synapse:dev nodemon lib/synapse.es6 -- clean --all",
+    "test": "DEBUG=synapse:test nodemon test/unittest.es6",
+    "integration": "DEBUG=synapse:integration nodemon test/integration.es6",
+    "release": "nodemon ./release.es6"
   },
   "repository": {
     "type": "git",
@@ -19,32 +20,33 @@
   ],
   "author": "Patricio Ferreira <3dimentionar@gmail.com>",
   "license": "UNLICENSED",
+  "nodemonConfig": {
+    "watch": ["./lib/**/*", "./package.json"],
+    "execMap": {
+      "es6": "SYNAPSE_ENV=dev babel-node"
+    }
+  },
   "devDependencies": {
-    "@types/args": "3.0.0",
-    "@types/chai": "4.1.7",
-    "@types/deep-extend": "^0.4.31",
-    "@types/fs-extra": "5.0.5",
-    "@types/glob": "7.1.1",
-    "@types/json5": "0.0.30",
-    "@types/micro": "7.3.3",
-    "@types/mocha": "5.2.6",
-    "@types/node": "11.11.0",
-    "@types/nunjucks": "3.1.1",
-    "@types/sinon": "7.0.10",
-    "@types/systemjs": "0.20.6",
+    "@babel/core": "7.4.0",
+    "@babel/node": "7.2.2",
+    "@babel/preset-env": "7.4.2",
     "chai": "4.2.0",
+    "eslint": "5.15.3",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0",
     "mocha": "6.0.2",
-    "sinon": "7.3.0",
-    "ts-node": "8.0.3",
-    "tslint": "5.13.1",
-    "typescript": "3.3.3333"
+    "sinon": "7.3.0"
   },
   "dependencies": {
     "args": "5.0.1",
-    "colors": "1.3.3",
+    "debug": "4.1.1",
     "fs-extra": "7.0.1",
     "json5": "2.1.0",
     "micro": "9.3.3",
+    "nodemon": "1.18.10",
     "nunjucks": "3.2.0",
     "plugin-typescript": "8.0.0",
     "rollup": "1.6.0",
@@ -52,7 +54,9 @@
     "rollup-plugin-includepaths": "0.2.3",
     "rollup-plugin-node-resolve": "4.0.1",
     "serve-handler": "5.0.8",
+    "supports-color": "6.1.0",
     "systemjs": "3.0.1",
-    "systemjs-hmr": "2.0.9"
+    "systemjs-hmr": "2.0.9",
+    "underscore": "^1.9.1"
   }
 }
