@@ -4,10 +4,11 @@
 
 #### Available CLI Commands
 
-* ```synapse test``` - Runs Unit Tests
-* ```synapse dev``` - Runs Project in Dev mode
-* ```synapse prod``` - Runs Project in Prod mode
-* ```synapse release``` - Builds the project for releasing
+* ```synapse init``` - Bootstrap and initializes a project.
+* ```synapse test``` - Runs project unit tests.
+* ```synapse dev``` - Runs project in development mode.
+* ```synapse prod``` - Runs project in production mode.
+* ```synapse release``` - Builds the project for releasing.
 
 #### Common
 * Clean
