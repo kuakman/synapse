@@ -3,12 +3,41 @@
   "version": "1.0.0",
   "description": "Agnostic CLI tool that automates pipeline flow via commands for web development",
   "main": "bin/synapse",
-  "scripts": {
-    "dev": "DEBUG=synapse:dev nodemon lib/synapse.es6 -- clean --all",
-    "test": "DEBUG=synapse:test nodemon test/unittest.es6",
-    "integration": "DEBUG=synapse:integration nodemon test/integration.es6",
-    "release": "nodemon ./release.es6"
+  "bin": {
+    "synapse": "bin/synapse"
   },
+  "scripts": {
+    "dev": "cross-env DEBUG=synapse:dev NODE_ENV=dev nodemon lib/synapse.es6 -- clean --all",
+    "test": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts -w test/unit/**/*.spec.es6",
+    "it": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts test/integration/**/*.spec.es6",
+    "coverage": "cross-env NODE_ENV=test nyc mocha --opts mocha.opts test/unit/**/*.spec.es6",
+    "release": "babel-node ./release.es6"
+  },
+  "nyc": {
+    "require": [
+      "@babel/register"
+    ],
+    "reporter": [
+      "lcov",
+      "html",
+      "text"
+    ],
+    "extension": [
+      ".es6"
+    ],
+    "temp-dir": ".cache",
+    "report-dir": "coverage",
+    "cache": true,
+    "sourceMap": true,
+    "instrument": false
+  },
+  "files": [
+    "bin",
+    "lib",
+    "LICENSE",
+    "CHANGELOG.md",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:kuakman/synapse.git"
@@ -21,23 +50,33 @@
   "author": "Patricio Ferreira <3dimentionar@gmail.com>",
   "license": "UNLICENSED",
   "nodemonConfig": {
-    "watch": ["./lib/**/*", "./package.json"],
+    "watch": [
+      "./lib/**/*",
+      "./test/**/*",
+      "./package.json"
+    ],
     "execMap": {
-      "es6": "SYNAPSE_ENV=dev babel-node"
+      "es6": "babel-node"
     }
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
     "@babel/node": "7.2.2",
     "@babel/preset-env": "7.4.2",
+    "@babel/register": "7.4.0",
+    "babel-plugin-istanbul": "5.1.1",
+    "babel-plugin-module-resolver": "3.2.0",
     "chai": "4.2.0",
+    "cross-env": "5.2.0",
     "eslint": "5.15.3",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-mocha": "5.3.0",
     "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0",
     "mocha": "6.0.2",
+    "nyc": "13.3.0",
     "sinon": "7.3.0"
   },
   "dependencies": {
@@ -57,6 +96,6 @@
     "supports-color": "6.1.0",
     "systemjs": "3.0.1",
     "systemjs-hmr": "2.0.9",
-    "underscore": "^1.9.1"
+    "underscore": "1.9.1"
   }
 }

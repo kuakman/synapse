@@ -1,4 +1,21 @@
 {
 	"presets": ["@babel/preset-env"],
-	"ignore": ["./node_modules/**/*"]
+	"ignore": ["./node_modules/**/*"],
+	"plugins": [
+		["module-resolver", {
+			"root": ["./lib"],
+			"alias": {
+				"synapse": "./lib/synapse",
+				"commands": "commands",
+				"environments": "environments",
+				"tasks": "tasks",
+				"utils": "utils"
+			}
+		}]
+	],
+	"env": {
+		"test": {
+			"plugins": ["istanbul"]
+		}
+	}
 }
