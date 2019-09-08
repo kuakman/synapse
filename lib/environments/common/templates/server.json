@@ -1,0 +1,6 @@
+{
+	"public": "./public",
+	"rewrites": [{ "source": ":url.html", "destination": "html/:url.html" }],
+	"cleanUrls": true,
+	"port": 3000
+}

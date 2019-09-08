@@ -1,0 +1,23 @@
+{
+	"test": {
+		"libs": [
+			"js/libraries/libraries-test.ts",
+			"js/libraries/libraries-dev.ts",
+			"js/libraries/libraries-prod.ts"
+		],
+		"output": { "format": "system" }
+	},
+	"dev": {
+		"libs": [
+			"js/libraries/libraries-dev.ts",
+			"js/libraries/libraries-prod.ts"
+		],
+		"output": { "format": "system" }
+	},
+	"prod": {
+		"libs": [
+			"js/libraries/libraries-prod.ts"
+		],
+		"output": { "format": "system" }
+	}
+}

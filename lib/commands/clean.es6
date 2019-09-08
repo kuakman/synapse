@@ -1,13 +1,12 @@
 /**
- * Task Clean
+ * Command Clean
+ * @author Patricio Ferreira <3dimentionar@gmail.com>
  */
-import _ from 'underscore';
-import { dev } from '../utils/debug';
+import color from '@oclif/color';
+import Command from '@oclif/command';
 
-export const clean = (name, sub, options) => {
-	dev('%s %o %o', name[0], sub, options);
-	// return await Promise.all(config.targetLibs.map(fs.remove.bind(fs)))
-	// .then(() => fs.remove(config.targetHtml))
-	// .then(() => console.log(colors.yellow("Clean Directories")));
-	// return _.extend(options, { clean: name[0] });
-};
+export default class Clean extends Command {
+	async run () {
+		console.log(color.blue('Hello Clean!'));
+	}
+}

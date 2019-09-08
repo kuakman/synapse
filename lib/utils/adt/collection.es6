@@ -1,5 +1,5 @@
 /**
- * Release Script
+ * Collection Class
  * @author Patricio Ferreira <3dimentionar@gmail.com>
  */
-// TODO: Create Release Script
+export default class Collection {}

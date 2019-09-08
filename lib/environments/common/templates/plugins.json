@@ -1,0 +1,17 @@
+[
+	{
+		"name": "includepaths",
+		"options": { "include": { "systemjs": "./node_modules/systemjs/dist/s.js" } }
+	}, {
+		"name": "node-resolve",
+		"options": {
+			"module": true,
+			"jsnext": true,
+			"main": true,
+			"browser": true
+		}
+	}, {
+		"name": "commonjs",
+		"options": { "include": "node_modules/**" }
+	}
+]

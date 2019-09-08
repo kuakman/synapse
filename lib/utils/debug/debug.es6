@@ -5,6 +5,7 @@
 import debug from 'debug';
 
 export const log = debug('synapse');
-export const error = log.extend('error');
+export const err = log.extend('error');
+export const warn = log.extend('warn');
 export const test = log.extend('test');
 export const dev = log.extend('dev');

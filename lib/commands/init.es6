@@ -1,10 +1,11 @@
 /**
- * Task Init
+ * Command Init
  * @author Patricio Ferreira <3dimentionar@gmail.com>
  */
-import { dev } from '../utils/debug';
+import Command from '@oclif/command';
 
-export const init = (name, sub, options) => {
-	dev('%s %o %o', name[0], sub, options);
-	// TODO
-};
+export class Init extends Command {
+	async run () {
+		console.log('Hello Init!');
+	}
+}

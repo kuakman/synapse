@@ -3,13 +3,12 @@
 	"ignore": ["./node_modules/**/*"],
 	"plugins": [
 		["module-resolver", {
-			"root": ["./lib"],
 			"alias": {
 				"synapse": "./lib/synapse",
-				"commands": "commands",
-				"environments": "environments",
-				"tasks": "tasks",
-				"utils": "utils"
+				"commands": "./lib/commands",
+				"environments": "./lib/environments",
+				"tasks": "./lib/tasks",
+				"utils": "./lib/utils"
 			}
 		}]
 	],
