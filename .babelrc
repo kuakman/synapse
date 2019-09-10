@@ -10,6 +10,7 @@
 			"alias": {
 				"synapse": "./lib/synapse",
 				"commands": "./lib/commands",
+				"common": "./lib/common",
 				"environments": "./lib/environments",
 				"tasks": "./lib/tasks",
 				"utils": "./lib/utils"
