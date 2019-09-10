@@ -8,11 +8,9 @@
 	"plugins": [
 		["module-resolver", {
 			"alias": {
-				"synapse": "./lib/synapse",
 				"commands": "./lib/commands",
 				"common": "./lib/common",
-				"environments": "./lib/environments",
-				"tasks": "./lib/tasks",
+				"archetypes": "./lib/archetypes",
 				"utils": "./lib/utils"
 			}
 		}],

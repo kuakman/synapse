@@ -23,6 +23,6 @@
         "no-spaced-func": "off",
         "space-before-function-paren": "off",
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
-        "lines-between-class-members": ["error", "always"]
+        "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
     }
 }
