@@ -1,6 +1,10 @@
 {
-	"presets": ["@babel/preset-env"],
-	"ignore": ["./node_modules/**/*"],
+	"presets": [
+		["@babel/preset-env", {
+			"targets": { "node": true },
+			"modules": "commonjs"
+		}]
+	],
 	"plugins": [
 		["module-resolver", {
 			"alias": {
@@ -10,7 +14,8 @@
 				"tasks": "./lib/tasks",
 				"utils": "./lib/utils"
 			}
-		}]
+		}],
+		["@babel/plugin-proposal-class-properties"]
 	],
 	"env": {
 		"test": {

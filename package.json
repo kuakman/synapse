@@ -2,16 +2,16 @@
   "name": "synapse",
   "version": "1.0.0",
   "description": "Agnostic CLI tool that automates pipeline flow via commands for web development",
-  "main": "lib/synapse.es6",
+  "main": "./release.js",
   "bin": {
     "synapse": "./bin/synapse"
   },
   "scripts": {
     "dev": "cross-env DEBUG=synapse:dev NODE_ENV=dev nodemon lib/synapse.es6 -- clean --all",
-    "test": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts -w test/unit/**/*.spec.es6",
-    "it": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts test/integration/**/*.spec.es6",
-    "coverage": "cross-env NODE_ENV=test nyc mocha --opts mocha.opts test/unit/**/*.spec.es6",
-    "release": "babel-node ./release.es6"
+    "test": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts -w test/unit/**/*.spec.js",
+    "it": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts test/integration/**/*.spec.js",
+    "coverage": "cross-env NODE_ENV=test nyc mocha --opts mocha.opts test/unit/**/*.spec.js",
+    "release": "node ./release.js"
   },
   "nyc": {
     "require": [
@@ -51,6 +51,7 @@
     "pipeline",
     "development-tools"
   ],
+  "types": "./@types/index.d.ts",
   "author": "Patricio Ferreira <3dimentionar@gmail.com>",
   "license": "UNLICENSED",
   "nodemonConfig": {
@@ -58,10 +59,7 @@
       "./lib/**/*",
       "./test/**/*",
       "./package.json"
-    ],
-    "execMap": {
-      "es6": "babel-node"
-    }
+    ]
   },
   "oclif": {
     "commands": "./lib/commands",
@@ -71,6 +69,7 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "10.0.3",
     "babel-plugin-istanbul": "5.1.1",
     "chai": "4.2.0",
     "cross-env": "5.2.0",
@@ -87,7 +86,7 @@
   },
   "dependencies": {
     "@babel/core": "7.4.0",
-    "@babel/node": "7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "7.4.2",
     "@babel/register": "7.4.0",
     "@oclif/color": "0.0.0",
@@ -95,9 +94,9 @@
     "@oclif/config": "1.13.3",
     "@oclif/plugin-help": "2.2.1",
     "babel-plugin-module-resolver": "3.2.0",
-    "debug": "4.1.1",
+    "cli-ux": "5.3.2",
     "fs-extra": "7.0.1",
-    "globby": "^10.0.1",
+    "globby": "10.0.1",
     "json5": "2.1.0",
     "micro": "9.3.3",
     "nodemon": "1.18.10",
