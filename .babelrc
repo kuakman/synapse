@@ -14,7 +14,8 @@
 				"utils": "./lib/utils"
 			}
 		}],
-		["@babel/plugin-proposal-class-properties"]
+		["@babel/plugin-proposal-class-properties"],
+		["@babel/plugin-proposal-decorators"]
 	],
 	"env": {
 		"test": {

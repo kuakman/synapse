@@ -25,6 +25,7 @@ node_modules/
 
 # IDEs
 .idea
+_babel_resolver.js
 
 # OS
 .DS_Store

@@ -1,0 +1,22 @@
+{
+	args: [],
+	flags: {
+		clean: {
+			char: 'c',
+			description: 'Clean',
+			hidden: false,
+			multiple: false,
+			env: 'SYNAPSE:CLEAN',
+			default: false,
+			required: false
+		}
+	},
+	strict: true,
+	hidden: false,
+	examples: [
+		'$ synapse dev',
+		'$ synapse dev --c'
+	],
+	usage: 'synapse dev [--c]',
+	description: 'Runs application in development environment.'
+}

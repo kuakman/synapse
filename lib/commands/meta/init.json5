@@ -1,0 +1,33 @@
+{
+	args: [],
+	flags: {
+		config: {
+			char: 'c',
+			description: 'Configuration',
+			hidden: false,
+			multiple: false,
+			env: 'SYNAPSE:INIT',
+			options: ['realtime', 'remote', 'file', 'package'],
+			default: 'file',
+			required: true
+		},
+		archetype: {
+			char: 'a',
+			description: 'Archetype',
+			hidden: false,
+			multiple: false,
+			env: 'SYNAPSE:INIT',
+			default: 'default',
+			required: false
+		}
+	},
+	strict: true,
+	hidden: false,
+	examples: [
+		'$ synapse init',
+		'$ synapse init --config remote,file',
+		'$ synapse init --config package --archetype buildcom/'
+	],
+	usage: 'synapse init --config [realtime|remote|file|package] --archetype [name]',
+	description: 'Initializes synapse configuration in your project.'
+}
