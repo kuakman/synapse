@@ -14,20 +14,20 @@ jobs:
 
         steps:
             - name: Checkout
-               if: github.event.pull_request.merged
-               uses: actions/checkout@v2
+              if: github.event.pull_request.merged
+              uses: actions/checkout@v2
 
             - name: Use Node 8.x
-               uses: actions/setup-node@v2
-               with:
+              uses: actions/setup-node@v2
+              with:
                   node-version: 8.x
 
             - name: Verifying
-                run: |
-                    npm install
-                    npm run coverage
+              run: |
+                  npm install
+                  npm run coverage
 
             - name: Coveralls Report
-                uses: coverallsapp/github-action@master
-                with:
-                    github-token: ${{ secrets.GITHUB_TOKEN }}
+              uses: coverallsapp/github-action@master
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}

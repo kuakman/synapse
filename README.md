@@ -1,9 +1,12 @@
 ## Synapse
 
+![.github/workflows/ci.yml](https://github.com/kuakman/synapse/workflows/.github/workflows/ci.yml/badge.svg)
+![.github/workflows/deploy.yml](https://github.com/kuakman/synapse/workflows/.github/workflows/deploy.yml/badge.svg)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/kuakman/synapse?color=00dd00)
 [![Coverage Status](https://coveralls.io/repos/github/kuakman/synapse/badge.svg?branch=master)](https://coveralls.io/github/kuakman/synapse?branch=master)
 ![APM](https://img.shields.io/apm/l/synapse?color=%2500ff00&label=License&style=flat)
 ![GitHub stars](https://img.shields.io/github/stars/kuakman/synapse?color=00dd00&label=Github%20Stars)
+
 ```TODO: Project Description```
 
 ---
