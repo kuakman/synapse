@@ -2,16 +2,15 @@
   "name": "synapse",
   "version": "1.0.0",
   "description": "Agnostic CLI tool that automates pipeline flow via commands for web development",
-  "main": "./release.js",
+  "main": "./lib/synapse.js",
   "bin": {
     "synapse": "./bin/synapse"
   },
   "scripts": {
-    "dev": "cross-env DEBUG=synapse:dev NODE_ENV=dev nodemon lib/synapse.es6 -- clean --all",
-    "test": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts -w test/unit/**/*.spec.js",
-    "it": "cross-env DEBUG=synapse:* NODE_ENV=test _mocha --opts mocha.opts test/integration/**/*.spec.js",
-    "coverage": "cross-env NODE_ENV=test nyc mocha --opts mocha.opts test/unit/**/*.spec.js",
-    "release": "node ./release.js"
+    "dev": "cross-env DEBUG=synapse:dev NODE_ENV=dev nodemon bin/synapse",
+    "test": "cross-env DEBUG=synapse:test NODE_ENV=test _mocha --config .mocharc.json -w test/unit/**/*.spec.js",
+    "it": "cross-env DEBUG=synapse:integration NODE_ENV=test _mocha --config .mocharc.json test/integration/**/*.spec.js",
+    "coverage": "cross-env NODE_ENV=test nyc mocha --config .mocharc.json test/unit/**/*.spec.js"
   },
   "nyc": {
     "require": [
@@ -19,11 +18,10 @@
     ],
     "reporter": [
       "lcov",
-      "html",
       "text"
     ],
     "extension": [
-      ".es6"
+      ".js"
     ],
     "temp-dir": ".cache",
     "report-dir": "coverage",
@@ -75,12 +73,13 @@
     "cross-env": "7.0.0",
     "eslint": "6.8.0",
     "eslint-config-standard": "14.1.0",
+    "eslint-plugin-chai-assert-bdd": "0.0.3",
     "eslint-plugin-import": "2.20.0",
     "eslint-plugin-mocha": "6.2.2",
-    "eslint-plugin-node": "11.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "mocha": "7.0.1",
+    "nodemon": "2.0.2",
     "nyc": "15.0.0",
     "sinon": "8.1.1"
   },
@@ -101,6 +100,7 @@
     "globby": "11.0.0",
     "json5": "2.1.1",
     "micro": "9.3.4",
+    "promise-sequential": "1.1.1",
     "underscore": "1.9.2"
   }
 }

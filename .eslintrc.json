@@ -1,19 +1,27 @@
 {
     "env": {
-        "node": true,
         "es6": true,
         "mocha": true
     },
-    "extends": "standard",
+    "extends": [
+        "standard"
+    ],
     "globals": {
         "assert": true,
         "sinon": true,
+        "sandbox": true,
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "plugins": [
+        "import",
+        "mocha",
+        "promise",
+        "chai-assert-bdd"
+    ],
     "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 2018,
+        "ecmaVersion": 2020,
         "sourceType": "module"
     },
     "rules": {

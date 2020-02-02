@@ -1,0 +1,22 @@
+name:  CI Branches
+
+on:
+    push:
+        - '!master'
+
+jobs:
+    test:
+        name: Unit Testing
+        runs-on: ubuntu-latest
+        steps:
+            uses: actions/checkout@v2
+
+            - name: Use Node 8.x
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 8.x
+
+            - name: Unit Testing
+               run: |
+                   npm install
+                   npm run test

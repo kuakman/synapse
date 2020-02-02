@@ -1,9 +1,0 @@
---require @babel/register
---require chai/register-assert
---recursive
---ui bdd
---diff
---extension es6
---inline-diffs
---timeout 2000
---reporter spec
