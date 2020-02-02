@@ -41,7 +41,8 @@ describe('class SynapseCommand', function() {
 
 		describe('run()', () => {
 			it('should run the command', async () => {
-				assert.equal(await this.command.run(), this.command);
+				const result = await this.command.run();
+				assert.isArray(result);
 				assert.isTrue(this.spyStart.calledOnce);
 				assert.isTrue(this.spyEnd.calledOnce);
 			});

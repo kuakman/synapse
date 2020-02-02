@@ -1,0 +1,4 @@
+# Ignore linting
+node_modules
+bin
+coverage
