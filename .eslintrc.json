@@ -26,7 +26,10 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2020,
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "legacyDecorators": true
+        }
     },
     "rules": {
         "semi": ["error", "always"],
@@ -36,6 +39,7 @@
         "space-before-function-paren": "off",
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-empty-function": ["error", { "allow": ["functions", "arrowFunctions", "methods"] }]
     }
 }

@@ -1,7 +1,7 @@
 {
   "name": "synapse",
   "version": "1.0.0",
-  "description": "Agnostic CLI tool that automates pipeline flow via commands for web development",
+  "description": "Agnostic CLI tool that automates pipeline flows via commands for web development",
   "main": "./lib/synapse.js",
   "bin": {
     "synapse": "./bin/synapse"
@@ -25,7 +25,9 @@
     ],
     "temp-dir": ".cache",
     "report-dir": "coverage",
-    "include": ["lib/**"],
+    "include": [
+      "lib/**"
+    ],
     "cache": true,
     "sourceMap": true,
     "all": true,
@@ -101,6 +103,7 @@
     "babel-plugin-module-resolver": "4.0.0",
     "cli-ux": "5.4.4",
     "debug": "4.1.1",
+    "extend": "3.0.2",
     "fs-extra": "8.1.0",
     "globby": "11.0.0",
     "json5": "2.1.1",
