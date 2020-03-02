@@ -1,4 +1,4 @@
-## Synapse Package Configuration
+## Synapse Injector Configuration
 
 <h4>Codebase</h4>
 * Typescript
