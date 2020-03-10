@@ -1,5 +1,4 @@
 {
-    "root": true,
     "env": {
         "es6": true,
         "mocha": true
@@ -26,10 +25,7 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2020,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "legacyDecorators": true
-        }
+        "sourceType": "module"
     },
     "rules": {
         "semi": ["error", "always"],

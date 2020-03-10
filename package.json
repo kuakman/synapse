@@ -8,9 +8,9 @@
   },
   "scripts": {
     "dev": "cross-env DEBUG=synapse:dev NODE_ENV=dev nodemon bin/synapse",
-    "test": "cross-env DEBUG=synapse:test NODE_ENV=test _mocha --config .mocharc.json -w test/unit/**/*.spec.js",
-    "it": "cross-env DEBUG=synapse:integration NODE_ENV=test _mocha --config .mocharc.json test/integration/**/*.spec.js",
-    "coverage": "cross-env NODE_ENV=test nyc mocha --config .mocharc.json test/unit/**/*.spec.js"
+    "test": "cross-env DEBUG=synapse:test NODE_ENV=test _mocha --config .mocharc.json -w test/unit/**/*_spec.js",
+    "it": "cross-env DEBUG=synapse:integration NODE_ENV=test _mocha --config .mocharc.json test/integration/**/*_spec.js",
+    "coverage": "cross-env NODE_ENV=test nyc mocha --config .mocharc.json test/unit/**/*_spec.js"
   },
   "nyc": {
     "require": [

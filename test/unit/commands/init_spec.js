@@ -21,9 +21,5 @@ describe('class InitCommand', function() {
 		afterEach(() => {
 			sandbox.restore();
 		});
-
-		describe('getTasks()', () => {
-			it('should retrieve tasks', () => {});
-		});
 	});
 });
