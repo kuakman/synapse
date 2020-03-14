@@ -1,5 +1,4 @@
 {
-    "root": true,
     "env": {
         "es6": true,
         "mocha": true
@@ -26,10 +25,7 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2020,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "legacyDecorators": true
-        }
+        "sourceType": "module"
     },
     "rules": {
         "semi": ["error", "always"],
@@ -39,6 +35,8 @@
         "space-before-function-paren": "off",
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+        "new-cap": ["error", { "newIsCap": false }],
+        "one-var": ["error", "always"],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-empty-function": ["error", { "allow": ["functions", "arrowFunctions", "methods"] }],
         "operator-linebreak": "off"
