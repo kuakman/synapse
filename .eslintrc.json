@@ -36,6 +36,7 @@
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "new-cap": ["error", { "newIsCap": false }],
+        "one-var": ["error", "always"],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-empty-function": ["error", { "allow": ["functions", "arrowFunctions", "methods"] }]
     }
