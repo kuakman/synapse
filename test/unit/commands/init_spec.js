@@ -5,7 +5,7 @@
  */
 import { InitCommand } from 'commands/init';
 
-describe('class InitCommand', function() {
+describe.skip('class InitCommand', function() {
 	describe('constructor()', () => {
 		it('should instantiate class', () => {
 			this.command = new InitCommand();

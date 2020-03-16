@@ -6,7 +6,7 @@
 import extend from 'extend';
 import Collection from 'utils/adt/collection';
 
-describe.only('class Collection', function() {
+describe('class Collection', function() {
 	before(() => {
 		this.mPrimitives = [1, 2, 3];
 		this.mElements = [{ message: 'E1', value: 1 }, { message: 'E2', value: 2 }, { message: 'E3', value: 3 }];
@@ -49,15 +49,15 @@ describe.only('class Collection', function() {
 			sandbox.restore();
 		});
 
-		describe('fireEvent()', () => {
+		describe('_fireEvent()', () => {
 			it('should NOT fire an event: name is not defined', () => {
 				this.spyEmit = sandbox.spy(this.primitives, 'emit');
-				assert.equal(this.primitives.fireEvent(), this.primitives);
+				assert.equal(this.primitives._fireEvent(), this.primitives);
 				assert.isFalse(this.spyEmit.calledOnce);
 			});
 			it('should NOT fire an event: name defined, options.silent = true', () => {
 				this.spyEmit = sandbox.spy(this.primitives, 'emit');
-				assert.equal(this.primitives.fireEvent('some:event', { silent: true }), this.primitives);
+				assert.equal(this.primitives._fireEvent('some:event', { silent: true }), this.primitives);
 				assert.isFalse(this.spyEmit.calledOnce);
 			});
 		});

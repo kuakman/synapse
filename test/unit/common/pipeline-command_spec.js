@@ -4,6 +4,8 @@
  * @author Patricio Ferreira <3dimentionar@gmail.com>
  */
 import { PipelineCommand } from 'common/pipeline-command';
+import Collection from 'utils/adt/collection';
+import * as debug from 'utils/debug/debug';
 
 describe('class PipelineCommand', function() {
 	describe('constructor()', () => {
@@ -15,54 +17,27 @@ describe('class PipelineCommand', function() {
 
 	describe('methods', () => {
 		beforeEach(() => {
-			this.mockCommand = sandbox.mock(this.command);
-			this.mockCommandStart = sandbox.mock(this.command.start);
-			this.mockCommandConfiguration = sandbox.mock(this.command.configuration);
-			this.mockCommandClean = sandbox.mock(this.command.clean);
-			this.mockCommandEnv = sandbox.mock(this.command.env);
-			this.mockCommandProcess = sandbox.mock(this.command.process);
-			this.mockCommandRelease = sandbox.mock(this.command.release);
-			this.mockCommandEnd = sandbox.mock(this.command.end);
+			this.mIsProduction = sandbox.stub(debug, 'isProduction');
+			this.mCommand = sandbox.mock(this.command);
 		});
 
 		afterEach(() => {
 			sandbox.restore();
 		});
 
-		describe('getTasks()', () => {
+		describe('tasks', () => {
 			it('should retrieve the list of tasks associated with this command', () => {
-				this.mockCommandStart.expects('bind').once().returns(this.command.start);
-				this.mockCommandConfiguration.expects('bind').once().returns(this.command.configuration);
-				this.mockCommandClean.expects('bind').once().returns(this.command.clean);
-				this.mockCommandEnv.expects('bind').once().returns(this.command.env);
-				this.mockCommandProcess.expects('bind').once().returns(this.command.process);
-				this.mockCommandRelease.expects('bind').once().returns(this.command.release);
-				this.mockCommandEnd.expects('bind').once().returns(this.command.end);
-
-				const result = this.command.getTasks();
-
-				this.mockCommandStart.verify();
-				this.mockCommandConfiguration.verify();
-				this.mockCommandClean.verify();
-				this.mockCommandEnv.verify();
-				this.mockCommandProcess.verify();
-				this.mockCommandRelease.verify();
-				this.mockCommandEnd.verify();
-
-				assert.isArray(result);
-				assert.equal(result[0], this.command.start);
-				assert.equal(result[1], this.command.configuration);
-				assert.equal(result[2], this.command.clean);
-				assert.equal(result[3], this.command.env);
-				assert.equal(result[4], this.command.process);
-				assert.equal(result[5], this.command.release);
-				assert.equal(result[6], this.command.end);
-			});
-		});
-
-		describe('toString()', () => {
-			it('should returns a string representation of the instance', () => {
-				assert.equal(this.command.toString(), `[${PipelineCommand.name}]`);
+				const result = this.command.tasks;
+				assert.instanceOf(result, Collection);
+				assert.equal(result.size(), 8);
+				assert.include(result, this.command.start);
+				assert.include(result, this.command.load);
+				assert.include(result, this.command.configuration);
+				assert.include(result, this.command.clean);
+				assert.include(result, this.command.env);
+				assert.include(result, this.command.process);
+				assert.include(result, this.command.release);
+				assert.include(result, this.command.end);
 			});
 		});
 
@@ -100,8 +75,14 @@ describe('class PipelineCommand', function() {
 			it('should run the command', async () => {
 				const result = await this.command.run();
 				assert.isArray(result);
-				assert.lengthOf(result, 7);
+				assert.lengthOf(result, 8);
 				assert.include(result, this.command);
+			});
+		});
+
+		describe('toString()', () => {
+			it('should returns a string representation of the instance', () => {
+				assert.equal(this.command.toString(), `[${PipelineCommand.name}]`);
 			});
 		});
 	});

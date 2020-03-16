@@ -35,8 +35,8 @@
         "space-before-function-paren": "off",
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
-        "new-cap": ["error", { "newIsCap": false }],
-        "one-var": ["error", "always"],
+        "new-cap": ["error", { "newIsCap": false, "capIsNew": false }],
+        "one-var": [2, { "uninitialized": "always" }],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-empty-function": ["error", { "allow": ["functions", "arrowFunctions", "methods"] }],
         "operator-linebreak": "off"
