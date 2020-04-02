@@ -1,0 +1,8 @@
+{
+	"dependencies": [
+		"mocha",
+		"sinon",
+		"chai",
+		"nyc"
+	]
+}

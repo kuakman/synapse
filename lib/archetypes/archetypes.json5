@@ -1,0 +1,13 @@
+[
+	{ type: 'backend', name: 'expressjs-nunjucks' },
+	{ type: 'backend', name: 'static-server' },
+	{ type: 'bundling', name: 'systemjs-rollup' },
+	{ type: 'transpiler', name: 'typescript' },
+	{ type: 'transpiler', name: 'babel' },
+	{ type: 'frontend', name: 'cloud' },
+	{ type: 'frontend', name: 'rinoa' },
+	{ type: 'testing', name: 'jest' },
+	{ type: 'testing', name: 'mocha-sinon-chai' },
+	{ type: 'utilities', name: 'google-analytics' },
+	{ type: 'utilities', name: 'error-reporting' }
+]

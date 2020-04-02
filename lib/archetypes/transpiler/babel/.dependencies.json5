@@ -1,0 +1,8 @@
+{
+	"dependencies": [
+		"@babel/core",
+		"@babel/preset-env",
+		"@babel/register",
+		"babel-plugin-istanbul"
+	]
+}

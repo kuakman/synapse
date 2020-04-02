@@ -1,0 +1,6 @@
+{
+	"extends": "frontend:cloud",
+	"dependencies": [
+		"redux"
+	]
+}

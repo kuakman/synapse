@@ -32,14 +32,13 @@ describe('class ScaffoldCommand', function() {
 				assert.equal(result.size(), 4);
 				assert.include(result, this.command.start);
 				assert.include(result, this.command.load);
-				assert.include(result, this.command.prompting);
 				assert.include(result, this.command.end);
 			});
 		});
 
-		describe('prompting()', () => {
-			it('should execute prompting', async () => {
-				assert.equal(await this.command.prompting(), this.command);
+		describe('prompt()', () => {
+			it('should execute prompt', async () => {
+				assert.equal(await this.command.prompt(), this.command);
 			});
 		});
 

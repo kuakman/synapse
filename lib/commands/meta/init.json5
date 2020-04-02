@@ -3,7 +3,7 @@
 	flags: {
 		config: {
 			char: 'c',
-			description: 'Configuration',
+			description: 'Select Configuration',
 			hidden: false,
 			multiple: false,
 			env: 'SYNAPSE:INIT',
@@ -13,7 +13,7 @@
 		},
 		archetype: {
 			char: 'a',
-			description: 'Archetype',
+			description: 'Select Archetype',
 			hidden: false,
 			multiple: false,
 			env: 'SYNAPSE:INIT',

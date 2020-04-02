@@ -1,0 +1,10 @@
+{
+	"dependencies": [
+		"systemjs",
+		"systemjs-hmr",
+		"rollup",
+		"rollup-plugin-commonjs",
+		"rollup-plugin-includepaths",
+		"rollup-plugin-node-resolve"
+	]
+}

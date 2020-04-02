@@ -12,6 +12,10 @@
         "assert": true,
         "sinon": true,
         "sandbox": true,
+        "wrap": true,
+        "register": true,
+        "initialize": true,
+        "expose": true,
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
