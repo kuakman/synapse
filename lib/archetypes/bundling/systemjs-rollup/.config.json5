@@ -1,0 +1,54 @@
+{
+	"config": {
+		"bundling": {
+			"test": {
+				"libs": ["js/libraries/libraries-test", "js/libraries/libraries-dev", "js/libraries/libraries"],
+				"output": { "format": "system" }
+			},
+			"dev": {
+				"libs": ["js/libraries/libraries-dev", "js/libraries/libraries"],
+				"output": { "format": "system" }
+			},
+			"prod": {
+				"libs": ["js/libraries/libraries"],
+				"output": { "format": "system" }
+			},
+			"plugins": [
+				{
+					"name": "includepaths",
+					"options": {
+						"include": { "systemjs": "./node_modules/systemjs/dist/s.js" }
+					}
+				}, {
+					"name": "node-resolve",
+					"options": {
+						"module": true,
+						"jsnext": true,
+						"main": true,
+						"browser": true
+					}
+				}, {
+					"name": "commonjs",
+					"options": {
+						"include": "node_modules/**"
+					}
+				}
+			]
+		}
+	},
+	"scripts": {
+		"test": "./bundle.js",
+		"dev": "./bundle.js",
+		"prod": "./bundle.js"
+	},
+	"devDependencies": [
+		"rollup",
+		"rollup-plugin-commonjs",
+		"rollup-plugin-includepaths",
+		"rollup-plugin-node-resolve"
+	],
+	"dependencies": [
+		"systemjs",
+		"systemjs-hmr"
+	]
+}

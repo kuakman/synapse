@@ -1,0 +1,66 @@
+{
+	"synapse": {
+		"source": "./src",
+		"target": "./public",
+		"scripts": {
+			// Start
+			"pre-start": null,
+
+			// Configuration Parsing
+			"pre-config": null,
+			"config": null, // Non-Overridable
+			"post-config": null,
+
+			// Optional Clean
+			"pre-clean": null,
+			"clean": null,
+			"post-clean": null,
+
+			// Environment Execution
+			// Testing Env
+			"pre-test": null,
+			"test": null,
+			"post-test": null,
+			// Development Env
+			"pre-dev": null,
+			"dev": null,
+			"post-dev": null,
+			// Production Env
+			"pre-prod": null,
+			"prod": null,
+			"post-prod": null,
+
+			// Serve
+			"pre-serve": null,
+			"serve": null,
+			"post-serve": null,
+
+			// Release
+			"pre-release": null,
+			"release": null,
+			"post-release": null,
+
+			// End
+			"post-end": null
+		},
+		"environments": {
+			"prod": {
+				"server": {},
+				"templates": {},
+				"bundling": {}
+			},
+			"dev": {
+				"server": {},
+				"templates": {},
+				"bundling": {}
+			},
+			"test": {
+				"server": {},
+				"templates": {},
+				"bundling": {}
+			}
+		},
+	},
+	"devDependencies": {}, // testing, bundling
+	"dependencies": {} // backend, frontend, utilities
+}
