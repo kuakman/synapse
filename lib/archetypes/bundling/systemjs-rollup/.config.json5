@@ -1,5 +1,10 @@
 {
-	"config": {
+	"synapse": {
+		"scripts": {
+			"test": "./setup.js",
+			"dev": "./setup.js",
+			"prod": "./setup.js"
+		},
 		"bundling": {
 			"test": {
 				"libs": ["js/libraries/libraries-test", "js/libraries/libraries-dev", "js/libraries/libraries"],
@@ -35,11 +40,6 @@
 				}
 			]
 		}
-	},
-	"scripts": {
-		"test": "./bundle.js",
-		"dev": "./bundle.js",
-		"prod": "./bundle.js"
 	},
 	"devDependencies": [
 		"rollup",

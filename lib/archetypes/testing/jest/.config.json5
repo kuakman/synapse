@@ -1,8 +1,6 @@
 {
 	"extend": "testing:coverage-nyc",
 	"devDependencies": [
-		"mocha",
-		"sinon",
-		"chai"
+		"jest"
 	]
 }

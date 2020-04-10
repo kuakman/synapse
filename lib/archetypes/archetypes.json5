@@ -6,6 +6,7 @@
 	{ type: 'transpiler', name: 'babel' },
 	{ type: 'frontend', name: 'cloud' },
 	{ type: 'frontend', name: 'rinoa' },
+	{ type: 'testing', name: 'coverage-nyc' },
 	{ type: 'testing', name: 'jest' },
 	{ type: 'testing', name: 'mocha-sinon-chai' },
 	{ type: 'utilities', name: 'google-analytics' },

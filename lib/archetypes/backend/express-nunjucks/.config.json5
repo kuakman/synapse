@@ -1,5 +1,9 @@
 {
-	"config": {
+	"synapse": {
+		"scripts": {
+			"pre-serve": "./setup.js",
+			"serve": "nodemon ./serve.js"
+		},
 		"server": {
 			"public": "./public",
 			"port": 3000,
@@ -24,10 +28,6 @@
 				lstripBlocks: true
 			}
 		}
-	},
-	"scripts": {
-		"pre-serve": "./setup.js",
-		"serve": "nodemon ./serve.js"
 	},
 	"dependencies": [
 		"nodemon",

@@ -1,5 +1,5 @@
 {
-	"dependencies": [
+	"devDependencies": [
 		"@babel/core",
 		"@babel/preset-env",
 		"@babel/register",

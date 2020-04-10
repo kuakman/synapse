@@ -61,6 +61,6 @@
 			}
 		},
 	},
-	"devDependencies": {}, // testing, bundling
-	"dependencies": {} // backend, frontend, utilities
+	"devDependencies": {},
+	"dependencies": {}
 }

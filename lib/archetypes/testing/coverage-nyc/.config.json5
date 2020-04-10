@@ -1,0 +1,21 @@
+{
+	"nyc": {
+		"require": [],
+		"reporter": [
+			"lcov",
+			"text"
+		],
+		"extension": [
+			".js"
+		],
+		"temp-dir": ".cache",
+		"report-dir": "coverage",
+		"cache": true,
+		"sourceMap": true,
+		"all": true,
+		"instrument": false
+	},
+	"devDependencies": [
+		"nyc"
+	]
+}

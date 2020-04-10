@@ -1,14 +1,14 @@
 {
-	"config": {
+	"synapse": {
+		"scripts": {
+			"serve": "./serve.js"
+		},
 		"server": {
 			"public": "./public",
 			"rewrites": [{ "source": ":url", destination:  "html/:url.html" }],
 			"cleanUrls": true,
 			"port": 3000
 		}
-	},
-	"scripts": {
-		"serve": "./serve.js"
 	},
 	"dependencies": [
 		"micro",
