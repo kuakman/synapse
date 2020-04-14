@@ -5,6 +5,6 @@
 
 <h6>NPM Packages</h6>
 
-* Typescript
+* typescript
 
 Description ```_TODO_```

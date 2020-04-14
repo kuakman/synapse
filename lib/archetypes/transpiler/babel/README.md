@@ -5,6 +5,9 @@
 
 <h6>NPM Packages</h6>
 
-* Babel
+* @babel/core
+* @babel/preset-env
+* @babel/register
+* babel-plugin-istanbul
 
 Description ```_TODO_```

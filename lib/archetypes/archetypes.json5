@@ -1,14 +1,14 @@
 [
-	{ type: 'backend', name: 'expressjs-nunjucks' },
-	{ type: 'backend', name: 'static-server' },
-	{ type: 'bundling', name: 'systemjs-rollup' },
-	{ type: 'transpiler', name: 'typescript' },
-	{ type: 'transpiler', name: 'babel' },
-	{ type: 'frontend', name: 'cloud' },
-	{ type: 'frontend', name: 'rinoa' },
-	{ type: 'testing', name: 'coverage-nyc' },
-	{ type: 'testing', name: 'jest' },
-	{ type: 'testing', name: 'mocha-sinon-chai' },
-	{ type: 'utilities', name: 'google-analytics' },
-	{ type: 'utilities', name: 'error-reporting' }
+	{ type: 'backend', name: 'static-server', dependencies: ['micro', 'serve-handler'] },
+	{ type: 'backend', name: 'expressjs-nunjucks', dependencies: ['express', 'nunjucks', 'nodemon'] },
+	{ type: 'bundling', name: 'systemjs-rollup', dependencies: ['systemjs', 'systemjs-hmr', 'rollup', 'rollup-plugin-commonjs', 'rollup-plugin-includepaths', 'rollup-plugin-node-resolve'] },
+	{ type: 'transpiler', name: 'typescript', dependencies: ['typescript'] },
+	{ type: 'transpiler', name: 'babel', dependencies: ['@babel/core', '@babel/preset-env', '@babel/register', 'babel-plugin-istanbul'] },
+	{ type: 'frontend', name: 'cloud', dependencies: ['react', 'redux', 'tachyons'] },
+	{ type: 'frontend', name: 'rinoa', dependencies: ['react', 'mobx', 'tachyons'] },
+	{ type: 'testing', name: 'coverage-nyc', dependencies: ['nyc'] },
+	{ type: 'testing', name: 'jest', dependencies: ['jest'], extend: 'testing:coverage-nyc' },
+	{ type: 'testing', name: 'mocha-sinon-chai', dependencies: ['mocha', 'sinon', 'chai'], extend: 'testing:coverage-nyc' },
+	{ type: 'utilities', name: 'error-reporting', dependencies: ['newrelic', 'bugsnag'] },
+	{ type: 'utilities', name: 'google-analytics', dependencies: ['google-analytics'] }
 ]
