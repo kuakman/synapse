@@ -9,6 +9,6 @@
 	{ type: 'testing', name: 'coverage-nyc', dependencies: ['nyc'] },
 	{ type: 'testing', name: 'jest', dependencies: ['jest'], extend: 'testing:coverage-nyc' },
 	{ type: 'testing', name: 'mocha-sinon-chai', dependencies: ['mocha', 'sinon', 'chai'], extend: 'testing:coverage-nyc' },
-	{ type: 'utilities', name: 'error-reporting', dependencies: ['newrelic', 'bugsnag'] },
-	{ type: 'utilities', name: 'google-analytics', dependencies: ['google-analytics'] }
+	{ type: 'utilities', name: 'error-reporting', dependencies: ['newrelic', 'bugsnag'], multiple: true },
+	{ type: 'utilities', name: 'google-analytics', dependencies: ['google-analytics'], multiple: true }
 ]
