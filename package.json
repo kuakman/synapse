@@ -11,7 +11,8 @@
     "test": "cross-env DEBUG=synapse:test NODE_ENV=test _mocha --w --config .mocharc.js \\\"test/unit/**/*_spec.js\\\"",
     "test-sr": "cross-env DEBUG=synapse:test NODE_ENV=test _mocha --config .mocharc.js \\\"test/unit/**/*_spec.js\\\"",
     "it": "cross-env DEBUG=synapse:integration NODE_ENV=test _mocha --config .mocharc.js \\\"test/integration/**/*_spec.js\\\"",
-    "coverage": "cross-env NODE_ENV=test nyc mocha --config .mocharc.js \\\"test/unit/**/*_spec.js\\\""
+    "coverage": "cross-env NODE_ENV=test nyc mocha --config .mocharc.js \\\"test/unit/**/*_spec.js\\\"",
+    "prod":"cross-env NODE_ENV=prod nodemon --quiet -I bin/synapse"
   },
   "nyc": {
     "require": [

@@ -5,6 +5,7 @@
  */
 import { SynapseCommand } from 'common/synapse-command';
 import Collection from 'utils/adt/collection';
+import colors from 'ansi-colors';
 import ux from 'cli-ux';
 import * as utils from 'utils/utils';
 import * as debug from 'utils/debug/debug';
@@ -67,11 +68,11 @@ describe('class SynapseCommand', function() {
 		describe('load()', () => {
 			it('should load project package: package hasn\'t been loaded', async () => {
 				this.mCommand.expects('onProgress')
-					.once().withArgs('Package', 'Reading...')
+					.once().withArgs('Package Configuration', colors.yellow.bold('[Reading...]'))
 					.returns(this.command);
 				this.mCommand.expects('onSuccess')
 					.once()
-					.withArgs('Package Loaded.')
+					.withArgs(colors.green.bold('[Loaded]'))
 					.returns(this.command);
 
 				assert.equal(await this.command.load(), this.command);
