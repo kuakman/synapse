@@ -12,7 +12,7 @@ import * as debug from 'utils/debug/debug';
 describe('class SynapseCommand', function() {
 	describe('constructor()', () => {
 		it('should instantiate class', () => {
-			this.command = new SynapseCommand();
+			this.command = new SynapseCommand([], { root: process.cwd() });
 			assert.instanceOf(this.command, SynapseCommand);
 		});
 	});
@@ -27,7 +27,6 @@ describe('class SynapseCommand', function() {
 			this.mLoad = sandbox.mock(this.command.load);
 			this.mEnd = sandbox.mock(this.command.end);
 			this.mError = new Error('Mock Fatal Error');
-			this.mError.statusCode = 1;
 
 			this.spyCollectionInvoke = sandbox.spy(this.command.tasks, 'invoke');
 		});
@@ -47,6 +46,18 @@ describe('class SynapseCommand', function() {
 			});
 		});
 
+		describe('init()', () => {
+			it('should initialize command', async () => {
+				this.mCommand.expects('parse')
+					.once()
+					.withArgs(SynapseCommand)
+					.returns({});
+				assert.instanceOf(await this.command.init(), SynapseCommand);
+				assert.isOk(this.command.synapsePath);
+				assert.equal(this.command.synapsePath, process.cwd());
+			});
+		});
+
 		describe('start()', () => {
 			it('should start the command', async () => {
 				assert.equal(await this.command.start(), this.command);
@@ -56,29 +67,17 @@ describe('class SynapseCommand', function() {
 		describe('load()', () => {
 			it('should load project package: package hasn\'t been loaded', async () => {
 				this.mCommand.expects('onProgress')
-					.once().withArgs('Reading Package', 'Initializing')
+					.once().withArgs('Package', 'Reading...')
 					.returns(this.command);
 				this.mCommand.expects('onSuccess')
 					.once()
-					.withArgs('Done')
+					.withArgs('Package Loaded.')
 					.returns(this.command);
 
 				assert.equal(await this.command.load(), this.command);
 				assert.isOk(this.command.package);
 				assert.include(this.command.package, { name: 'synapse' });
 
-				this.mCommand.verify();
-			});
-			it('should load project package: package has been already loaded', async () => {
-				this.mUtils.expects('defined').once().returns(true);
-				this.mCommand.expects('onProgress').never();
-				this.mCommand.expects('onSuccess').never();
-
-				assert.equal(await this.command.load(), this.command);
-				assert.isOk(this.command.package);
-				assert.include(this.command.package, { name: 'synapse' });
-
-				this.mUtils.verify();
 				this.mCommand.verify();
 			});
 		});
@@ -193,22 +192,24 @@ describe('class SynapseCommand', function() {
 
 		describe('onError()', () => {
 			it('should handle error status: when production is on', () => {
+				const options = { code: 1 };
 				this.mIsProduction.returns(true);
-				this.mUxAction.expects('stop').withArgs(`${this.mError.message} - Code: ${this.mError.statusCode}`);
-				this.mCommand.expects('exit').once().withArgs(this.mError.statusCode);
+				this.mUxAction.expects('stop').withArgs(`${this.mError.message} - Code: ${options.code}`);
+				this.mCommand.expects('exit').once().withArgs(options.code);
 
-				assert.isUndefined(this.command.onError(this.mError));
+				assert.isUndefined(this.command.onError(this.mError, options));
 				assert.isTrue(this.mIsProduction.calledOnce);
 
 				this.mCommand.verify();
 				this.mUxAction.verify();
 			});
 			it('should handle error status: when production is off', () => {
+				const options = { code: 1 };
 				this.mIsProduction.returns(false);
 				this.mUxAction.expects('stop').never();
-				this.mCommand.expects('exit').once().withArgs(this.mError.statusCode);
+				this.mCommand.expects('exit').once().withArgs(options.code);
 
-				assert.isUndefined(this.command.onError(this.mError));
+				assert.isUndefined(this.command.onError(this.mError, options));
 				assert.isTrue(this.mIsProduction.calledOnce);
 
 				this.mCommand.verify();

@@ -17,12 +17,12 @@ jobs:
               if: github.event.pull_request.merged
               uses: actions/checkout@v2
 
-            - name: Use Node 8.x
-              uses: actions/setup-node@v2
+            - name: Use Node 10.x
+              uses: actions/setup-node@v1
               with:
-                  node-version: 8.x
+                  node-version: 10.x
 
-            - name: Verifying
+            - name: Unit Testing & Coverage
               run: |
                   npm install
                   npm run coverage

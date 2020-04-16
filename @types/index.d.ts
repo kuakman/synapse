@@ -3,21 +3,31 @@
  *  @author Patricio Ferreira <3dimentionar@gmail.com>
  **/
 import { Command } from '@oclif/config';
+import { Prompt } from 'enquirer';
 
 /**
  * @namespace synapse
  */
 declare namespace synapse {
 	/**
+	 * @interface ErrorOptions
+	 */
+	export interface ErrorOptions {
+		code?: number;
+	}
+
+	/**
 	 * @interface SynapseCommand
 	 * @extends Command.Class
 	 */
 	export interface SynapseCommand extends Command.Class {
-		getTasks(): Promise<SynapseCommand>[];
-		toString(): string;
-		onError(error: Error): void;
 		start(): Promise<SynapseCommand>;
+		load(): Promise<SynapseCommand>;
 		end(): Promise<SynapseCommand>;
+		onProgress(message?: string, status?: string): SynapseCommand;
+		onSuccess(message?: string): SynapseCommand;
+		onError(error: string|Error, options?: ErrorOptions): void;
+		toString(): string;
 	}
 
 	/**
@@ -25,7 +35,14 @@ declare namespace synapse {
 	 * @extends SynapseCommand
 	 */
 	export interface ScaffoldCommand extends SynapseCommand {
-		prompting(): Promise<ScaffoldCommand>;
+		attachEvents(): ScaffoldCommand;
+		isFlagAvailable(question: object): boolean;
+		question(question: object): object;
+		answer(answer: object): ScaffoldCommand;
+		createPrompt(Prompt: FunctionConstructor, question?: object): Promise<Prompt>|null;
+		prompt(question?: object): Promise<object|object[]>|null;
+		write(): Promise<ScaffoldCommand>;
+		install(): Promise<ScaffoldCommand>;
 	}
 
 	/**

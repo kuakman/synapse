@@ -21,4 +21,4 @@ jobs:
             - name: Unit Testing
               run: |
                   npm install
-                  npm run test
+                  npm run test-sr

@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "cross-env DEBUG=synapse:dev NODE_ENV=dev nodemon --quiet -I bin/synapse",
     "test": "cross-env DEBUG=synapse:test NODE_ENV=test _mocha --w --config .mocharc.js \\\"test/unit/**/*_spec.js\\\"",
+    "test-sr": "cross-env DEBUG=synapse:test NODE_ENV=test _mocha --config .mocharc.js \\\"test/unit/**/*_spec.js\\\"",
     "it": "cross-env DEBUG=synapse:integration NODE_ENV=test _mocha --config .mocharc.js \\\"test/integration/**/*_spec.js\\\"",
     "coverage": "cross-env NODE_ENV=test nyc mocha --config .mocharc.js \\\"test/unit/**/*_spec.js\\\""
   },
