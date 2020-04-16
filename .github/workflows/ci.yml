@@ -2,8 +2,8 @@ name:  CI Branches
 
 on:
     push:
-        branches:
-            - '!master'
+        branches-ignore:
+            - 'master'
 
 jobs:
     test:
@@ -13,10 +13,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Setup Node 8.x
+            - name: Setup Node 10.x
               uses: actions/setup-node@v2
               with:
-                  node-version: 8.x
+                  node-version: '10.x'
 
             - name: Unit Testing
               run: |
