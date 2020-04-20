@@ -1,0 +1,9 @@
+{
+	"synapse": {
+		"source": "./src",
+		"target": "./public",
+		"environments": {
+			"prod": {}
+		}
+	}
+}
