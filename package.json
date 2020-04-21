@@ -1,7 +1,7 @@
 {
   "name": "synapse",
   "version": "1.0.0",
-  "description": "Agnostic CLI tool that automates pipeline flows via commands for web development",
+  "description": "CLI tool that automates agnostic pipeline flows via commands for web development",
   "main": "./lib/synapse.js",
   "bin": {
     "synapse": "./bin/synapse"

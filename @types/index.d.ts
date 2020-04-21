@@ -95,6 +95,7 @@ declare namespace synapse {
 
 	export type Synapse = {
 		synapse: SynapseConfiguration;
+		banner: string;
 		devDependencies?: { [index: string]: string };
 		dependencies?: { [index: string]: string };
 	}
@@ -113,12 +114,11 @@ declare namespace synapse {
 	 * @extends Command.Class
 	 */
 	export interface SynapseCommand extends Command.Class {
+		attachEvents(): SynapseCommand;
+		setupTasks(): SynapseCommand;
 		start(): Promise<SynapseCommand>;
 		load(): Promise<SynapseCommand>;
 		end(): Promise<SynapseCommand>;
-		onProgress(message?: string, status?: string): SynapseCommand;
-		onSuccess(message?: string): SynapseCommand;
-		onError(error: string|Error, options?: ErrorOptions): void;
 		toString(): string;
 	}
 
@@ -127,15 +127,12 @@ declare namespace synapse {
 	 * @extends SynapseCommand
 	 */
 	export interface ScaffoldCommand extends SynapseCommand {
-		attachEvents(): ScaffoldCommand;
 		isFlagAvailable(question: object): boolean;
 		question(question: object): object;
 		answer(answer: object): ScaffoldCommand;
 		createPrompt(Prompt: FunctionConstructor, question?: object): Promise<Prompt>|null;
 		prompt(question?: object): Promise<object|object[]>|null;
-		read(): Promise<ScaffoldCommand>;
-		write(): Promise<ScaffoldCommand>;
-		install(): Promise<ScaffoldCommand>;
+		process(): Promise<ScaffoldCommand>;
 	}
 
 	/**

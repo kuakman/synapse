@@ -5,5 +5,6 @@
 		"environments": {
 			"prod": {}
 		}
-	}
+	},
+	"banner": "Synapse <%= version %><%= !_.isUndefined(url) ? (' | ' + url) : '' %> | License: MIT - <%= year %>\n"
 }
