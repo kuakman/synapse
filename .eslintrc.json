@@ -41,7 +41,10 @@
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "new-cap": ["error", { "newIsCap": false, "capIsNew": false }],
         "one-var": [2, { "uninitialized": "always" }],
+        "no-use-before-define": ["error", { "variables": false, "functions": true, "classes": true }],
+        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/no-empty-function": ["error", { "allow": ["functions", "arrowFunctions", "methods"] }],
         "operator-linebreak": "off"
     }

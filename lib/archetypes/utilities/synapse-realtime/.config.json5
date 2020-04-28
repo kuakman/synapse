@@ -1,0 +1,15 @@
+{
+	"synapse": {
+		"scripts": {
+			"serve": ["./realtime.js"]
+		},
+		"environments": {
+			"all": {
+				"synapseRealtime": {}
+			}
+		}
+	},
+	"devDependencies": [
+		"socket.io"
+	]
+}

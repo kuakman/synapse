@@ -11,103 +11,107 @@ import { Prompt } from 'enquirer';
 declare namespace synapse {
 	/** Synapse Configuration **/
 
-	export type SynapseScript = string | string[] | undefined | null;
+	export type Script = string | string[] | undefined | null;
 
-	export interface SynapseScripts {
+	export interface Scripts {
 		// Executed once through the command `synapse init` or `synapse update`
-		'create'?: SynapseScript;
+		'create'?: Script;
 
 		// Pipeline Execution Start
-		'pre-start'?: SynapseScript;
+		'pre-start'?: Script;
 
 		// Pipeline Execution for Configuration
-		'pre-config'?: SynapseScript;
-		'config'?: SynapseScript;
-		'post-config'?: SynapseScript;
+		'pre-config'?: Script;
+		'config'?: Script;
+		'post-config'?: Script;
 
 		// Pipeline Execution Clean (Optional)
-		'pre-clean'?: SynapseScript;
-		'clean'?: SynapseScript;
-		'post-clean'?: SynapseScript;
+		'pre-clean'?: Script;
+		'clean'?: Script;
+		'post-clean'?: Script;
 
 		// Pipeline Execution before environment
-		'pre-env'?: SynapseScript;
+		'pre-env'?: Script;
 
 		// Pipeline Execution Test Environment
-		'pre-test'?: SynapseScript;
-		'test'?: SynapseScript;
-		'post-test'?: SynapseScript;
+		'pre-test'?: Script;
+		'test'?: Script;
+		'post-test'?: Script;
 
 		// Pipeline Execution Development Environment
-		'pre-dev'?: SynapseScript;
-		'dev'?: SynapseScript;
-		'post-dev'?: SynapseScript;
+		'pre-dev'?: Script;
+		'dev'?: Script;
+		'post-dev'?: Script;
 
 		// Pipeline Execution Production Environment
-		'pre-prod'?: SynapseScript;
-		'prod'?: SynapseScript;
-		'post-prod'?: SynapseScript;
+		'pre-prod'?: Script;
+		'prod'?: Script;
+		'post-prod'?: Script;
 
 		// Pipeline Execution after environment
-		'post-env'?: SynapseScript;
+		'post-env'?: Script;
 
 		// Pipeline Execution serve phase
-		'pre-serve'?: SynapseScript;
-		'serve'?: SynapseScript;
-		'post-serve'?: SynapseScript;
+		'pre-serve'?: Script;
+		'serve'?: Script;
+		'post-serve'?: Script;
 
 		// Pipeline Execution for Release phase
-		'pre-release'?: SynapseScript;
-		'release'?: SynapseScript;
-		'post-release'?: SynapseScript;
+		'pre-release'?: Script;
+		'release'?: Script;
+		'post-release'?: Script;
 
 		// Pipeline Execution End
-		'pre-end'?: SynapseScript;
+		'pre-end'?: Script;
 	}
 
-	export interface SynapseEnvironment {
+	export interface Environment {
 		[index: string]: object;
 		backend?: object;
 		frontend?: object;
 	}
 
-	export interface SynapseEnvironments {
-		test?: SynapseEnvironment;
-		dev?: SynapseEnvironment;
-		prod: SynapseEnvironment;
+	export interface Environments {
+		all?: Environment;
+		test?: Environment;
+		dev?: Environment;
+		prod?: Environment;
 	}
 
-	export interface SynapseRealtime {
-		server: object;
-		auth: { // FIXME: Security SSH-based
-			username: string;
-		};
-		update: 'auto' | 'manual';
-	}
-
-	export interface SynapseConfiguration {
+	export interface Synapse {
 		source: string;
 		target: string;
-		scripts?: SynapseScripts;
-		environments?: SynapseEnvironments;
-		realtime?: SynapseRealtime;
+		scripts?: Scripts;
+		environments?: Environments;
 	}
 
-	export type Synapse = {
-		synapse: SynapseConfiguration;
+	export interface DependencyType {
+		dependencies: string;
+		devDependencies: string;
+		peerDependencies: string;
+	}
+
+	export type Configuration = {
+		[index: string]: any;
+		[name: keyof DependencyType]: string;
+		synapse: Synapse;
 		banner: string;
-		devDependencies?: { [index: string]: string };
-		dependencies?: { [index: string]: string };
 	}
 
 	/** END SynapseConfiguration **/
 
-	/**
-	 * @interface ErrorOptions
-	 */
-	export interface ErrorOptions {
-		code?: number;
+	/** Types **/
+
+	export interface Archetype {
+		name: string;
+		type: string;
+		dependencies: string[];
+		extend?: string;
+		multiple: boolean;
+		value: any;
 	}
+
+	/** END Types **/
 
 	/**
 	 * @interface SynapseCommand
@@ -128,6 +132,7 @@ declare namespace synapse {
 	 */
 	export interface ScaffoldCommand extends SynapseCommand {
 		isFlagAvailable(question: object): boolean;
+		findAnswerByName(name: string): Archetype|null;
 		question(question: object): object;
 		answer(answer: object): ScaffoldCommand;
 		createPrompt(Prompt: FunctionConstructor, question?: object): Promise<Prompt>|null;

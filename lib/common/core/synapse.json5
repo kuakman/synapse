@@ -2,9 +2,10 @@
 	"synapse": {
 		"source": "./src",
 		"target": "./public",
-		"environments": {
-			"prod": {}
-		}
+		"environments": {}
 	},
-	"banner": "Synapse <%= version %><%= !_.isUndefined(url) ? (' | ' + url) : '' %> | License: MIT - <%= year %>\n"
+	"banner": "Synapse <%= version %><%= !_.isUndefined(url) ? (' | ' + url) : '' %> | License: MIT - <%= year %>\n",
+	"dependencies": [],
+	"devDependencies": [],
+	"peerDependencies": []
 }
