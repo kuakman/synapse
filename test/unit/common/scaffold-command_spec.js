@@ -32,6 +32,7 @@ describe('class ScaffoldCommand', function() {
 	describe('constructor()', () => {
 		it('should instantiate class', () => {
 			this.command = new ScaffoldCommand([], {});
+			this.command.init();
 			assert.instanceOf(this.command, ScaffoldCommand);
 		});
 		it('should verify decorator interface is applied to the command instance', () => {
@@ -88,6 +89,10 @@ describe('class ScaffoldCommand', function() {
 			});
 		});
 
+		describe('isFlagAvailable()', () => {});
+
+		describe('findAnswerByName()', () => {});
+
 		describe('question()', () => {});
 
 		describe('answer()', () => {});
@@ -96,20 +101,7 @@ describe('class ScaffoldCommand', function() {
 
 		describe('prompt()', () => {});
 
-		describe('write()', () => {});
-
-		describe('install()', () => {});
-
-		describe('_onCapture()', () => {});
-
-		describe('run()', () => {
-			it('should run the command', async () => {
-				const result = await this.command.run();
-				assert.isArray(result);
-				assert.lengthOf(result, 3);
-				assert.include(result, this.command);
-			});
-		});
+		describe('process()', () => {});
 
 		describe('toString()', () => {
 			it('should returns a string representation of the instance', () => {

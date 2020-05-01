@@ -2,6 +2,7 @@
  *  Synapse Typings
  *  @author Patricio Ferreira <3dimentionar@gmail.com>
  **/
+/// <reference path="./collection.d.ts" />
 import { Command } from '@oclif/config';
 import { Prompt } from 'enquirer';
 

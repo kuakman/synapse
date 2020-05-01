@@ -4,6 +4,7 @@
  * @author Patricio Ferreira <3dimentionar@gmail.com>
  */
 import { SynapseCommand } from 'common/synapse-command';
+import Core from 'common/core/core';
 import Collection from 'utils/adt/collection';
 import colors from 'ansi-colors';
 import ux from 'cli-ux';
@@ -11,18 +12,37 @@ import * as utils from 'utils/utils';
 import * as debug from 'utils/debug/debug';
 
 describe('class SynapseCommand', function() {
+	beforeEach(() => {
+		this.mockConfig = {
+			config: {
+				pjson: {
+					version: '1.0.0'
+				}
+			}
+		};
+
+		this.mCommandClass = sandbox.mock(SynapseCommand.prototype);
+		this.mCore = sandbox.mock(Core);
+	});
+
+	afterEach(() => {
+		sandbox.restore();
+	});
+
 	describe('constructor()', () => {
 		it('should instantiate class', () => {
+			this.mCommandClass.expects('parse')
+				.once()
+				.withArgs(SynapseCommand)
+				.returns(this.mockConfig);
 			this.command = new SynapseCommand([], { root: process.cwd() });
+			this.command.init();
 			assert.instanceOf(this.command, SynapseCommand);
 		});
 	});
 
 	describe('methods', () => {
 		beforeEach(() => {
-			this.mIsProduction = sandbox.stub(debug, 'isProduction');
-			this.mUtils = sandbox.mock(utils);
-			this.mUxAction = sandbox.mock(ux.action);
 			this.mCommand = sandbox.mock(this.command);
 			this.mStart = sandbox.mock(this.command.start);
 			this.mLoad = sandbox.mock(this.command.load);
@@ -47,39 +67,34 @@ describe('class SynapseCommand', function() {
 			});
 		});
 
-		describe('init()', () => {
-			it('should initialize command', async () => {
-				this.mCommand.expects('parse')
-					.once()
-					.withArgs(SynapseCommand)
-					.returns({});
-				assert.instanceOf(await this.command.init(), SynapseCommand);
-				assert.isOk(this.command.synapsePath);
-				assert.equal(this.command.synapsePath, process.cwd());
-			});
-		});
-
 		describe('start()', () => {
 			it('should start the command', async () => {
+				this.mCore.expects('banner')
+					.once()
+					.withArgs({ version: `v${this.command.config.pjson.version}`, url: 'Documentation: http://nahuel.io/synapse' })
+					.returns(null);
 				assert.equal(await this.command.start(), this.command);
+
+				this.mCore.verify();
 			});
 		});
 
 		describe('load()', () => {
 			it('should load project package: package hasn\'t been loaded', async () => {
-				this.mCommand.expects('onProgress')
-					.once().withArgs('Package Configuration', colors.yellow.bold('[Reading...]'))
-					.returns(this.command);
-				this.mCommand.expects('onSuccess')
+				this.mCore.expects('onProgress')
 					.once()
-					.withArgs(colors.green.bold('[Loaded]'))
+					.withArgs(this.command, 'Package Configuration', colors.yellow.bold('[Reading...]'))
+					.returns(this.command);
+				this.mCore.expects('onSuccess')
+					.once()
+					.withArgs(this.command, colors.green.bold('[Loaded]'))
 					.returns(this.command);
 
 				assert.equal(await this.command.load(), this.command);
 				assert.isOk(this.command.package);
 				assert.include(this.command.package, { name: 'synapse' });
 
-				this.mCommand.verify();
+				this.mCore.verify();
 			});
 		});
 
@@ -114,7 +129,7 @@ describe('class SynapseCommand', function() {
 					.onFirstCall().resolves(this.command)
 					.onSecondCall().rejects(this.mError)
 					.onThirdCall().resolves(this.command);
-				this.mCommand.expects('onError').once().withArgs(this.mError);
+				this.mCore.expects('onError').once().withArgs(this.mError, this.command);
 				this.mStart.expects('bind').once().returns(stubTask);
 				this.mLoad.expects('bind').once().returns(stubTask);
 				this.mEnd.expects('bind').once().returns(stubTask);
@@ -125,96 +140,10 @@ describe('class SynapseCommand', function() {
 				assert.isTrue(this.spyCollectionInvoke.calledOnce);
 				assert.isTrue(stubTask.calledThrice);
 
-				this.mCommand.verify();
+				this.mCore.verify();
 				this.mStart.verify();
 				this.mLoad.verify();
 				this.mEnd.verify();
-			});
-		});
-
-		describe('onProgress()', () => {
-			it('should handle progress status: production is on, message & status are defined', () => {
-				this.mIsProduction.returns(true);
-				this.mUtils.expects('defined').twice().returns(true);
-				this.mUxAction.expects('start').once();
-
-				assert.equal(this.command.onProgress('Some Message', 'Initializing'), this.command);
-				assert.isTrue(this.mIsProduction.calledOnce);
-
-				this.mUtils.verify();
-				this.mUxAction.verify();
-			});
-			it('should handle progress status: production is on, message defined & status not defined', () => {
-				this.mIsProduction.returns(true);
-				this.mUtils.expects('defined').twice()
-					.onFirstCall().returns(true)
-					.onSecondCall().returns(false);
-				this.mUxAction.expects('start').never();
-
-				assert.equal(this.command.onProgress('Some Message'), this.command);
-				assert.isTrue(this.mIsProduction.calledOnce);
-
-				this.mUtils.verify();
-				this.mUxAction.verify();
-			});
-			it('should handle progress status: production is off, no message & status are defined', () => {
-				this.mIsProduction.returns(false);
-				this.mUtils.expects('defined').never();
-				this.mUxAction.expects('start').never();
-
-				assert.equal(this.command.onProgress(undefined, 'Initializing'), this.command);
-				assert.isTrue(this.mIsProduction.calledOnce);
-
-				this.mUtils.verify();
-				this.mUxAction.verify();
-			});
-		});
-
-		describe('onSuccess()', () => {
-			it('should handle success status: when production is on', () => {
-				this.mIsProduction.returns(true);
-				this.mUxAction.expects('stop').once().withArgs('');
-
-				assert.equal(this.command.onSuccess(), this.command);
-				assert.isTrue(this.mIsProduction.calledOnce);
-
-				this.mUxAction.verify();
-			});
-			it('should handle success status: when production is off', () => {
-				this.mIsProduction.returns(false);
-				this.mUxAction.expects('stop').never();
-
-				assert.equal(this.command.onSuccess(), this.command);
-				assert.isTrue(this.mIsProduction.calledOnce);
-
-				this.mUxAction.verify();
-			});
-		});
-
-		describe('onError()', () => {
-			it('should handle error status: when production is on', () => {
-				const options = { code: 1 };
-				this.mIsProduction.returns(true);
-				this.mUxAction.expects('stop').withArgs(`${this.mError.message} - Code: ${options.code}`);
-				this.mCommand.expects('exit').once().withArgs(options.code);
-
-				assert.isUndefined(this.command.onError(this.mError, options));
-				assert.isTrue(this.mIsProduction.calledOnce);
-
-				this.mCommand.verify();
-				this.mUxAction.verify();
-			});
-			it('should handle error status: when production is off', () => {
-				const options = { code: 1 };
-				this.mIsProduction.returns(false);
-				this.mUxAction.expects('stop').never();
-				this.mCommand.expects('exit').once().withArgs(options.code);
-
-				assert.isUndefined(this.command.onError(this.mError, options));
-				assert.isTrue(this.mIsProduction.calledOnce);
-
-				this.mCommand.verify();
-				this.mUxAction.verify();
 			});
 		});
 

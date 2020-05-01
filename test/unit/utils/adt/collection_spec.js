@@ -18,7 +18,7 @@ describe('class Collection', function() {
 	});
 
 	describe('constructor()', () => {
-		it('should instantiate class: primitives', () => {
+		it('should instantiate class: empty', () => {
 			this.empty = new Collection();
 			assert.instanceOf(this.empty, Collection);
 			assert.equal(this.empty.size(), 0);
@@ -29,7 +29,7 @@ describe('class Collection', function() {
 			assert.equal(this.primitives.size(), 3);
 		});
 		it('should instantiate class: interface', () => {
-			this.elements = new Collection(this.mElements, { interface: this.Generic });
+			this.elements = new Collection(this.mElements, { _interface: this.Generic });
 			assert.instanceOf(this.elements, Collection);
 			assert.equal(this.elements.size(), 3);
 		});
@@ -250,10 +250,11 @@ describe('class Collection', function() {
 			});
 		});
 
-		xdescribe('chain() - TODO', () => {
-			// TODO
-			// this.elements.chain().filter().compact() => <Instance of Collection> with result;
-			// Unless your operator's chain ends with find(), last(), or max() for example.
+		describe('chain()', () => {
+			it('should chain', () => {
+				assert.isUndefined(this.elements.chain().filter((e) => e.value !== 3).find((e) => e.value === 3));
+				assert.isFalse(this.elements.isChaining);
+			});
 		});
 
 		/** Underscore Methods **/
@@ -297,7 +298,7 @@ describe('class Collection', function() {
 
 		describe('find()', () => {
 			it('should find an element by predicate', () => {
-				assert.equal(this.primitives.find((element) => element === 3), 3);
+				assert.equal(this.primitives.find(element => element === 3), 3);
 			});
 		});
 
@@ -390,29 +391,63 @@ describe('class Collection', function() {
 		});
 
 		describe('groupBy()', () => {
-			xit('should make groups by a predicate', () => {});
+			it('should make groups by a predicate', () => {
+				const result = this.elements.groupBy((element) => {
+					return element.value === 1 ? 'G1' : 'G2';
+				});
+				assert.hasAllKeys(result, ['G1', 'G2']);
+				assert.ownInclude(result.G1, this.elements.at(0));
+				assert.ownInclude(result.G2, this.elements.at(1));
+				assert.ownInclude(result.G2, this.elements.at(2));
+			});
 		});
 
 		describe('countBy()', () => {
-			xit('should count by a predicate', () => {});
+			it('should count by a predicate', () => {
+				const result = this.elements.countBy((element) => {
+					return element.value <= 2 ? 'lessThan3' : 'greaterThan2';
+				});
+				assert.hasAllKeys(result, ['lessThan3', 'greaterThan2']);
+				assert.equal(result.lessThan3, 2);
+				assert.equal(result.greaterThan2, 1);
+			});
 		});
 
 		describe('sample()', () => {
-			xit('should retrieve a random sample from the collection', () => {});
+			it('should retrieve a random sample from the collection', () => {
+				assert.instanceOf(this.elements.sample(), this.Generic);
+			});
 		});
 
 		describe('partition()', () => {
-			xit('should make different partitions by a predicate', () => {});
+			it('should make different partitions by a predicate', () => {
+				const result = this.elements.partition((element) => element.value > 2);
+
+				assert.isArray(result);
+				assert.include(result[0], this.elements.at(2));
+				assert.include(result[1], this.elements.at(0));
+				assert.include(result[1], this.elements.at(1));
+			});
 		});
 
 		describe('compact()', () => {
-			xit('should compact values from the collection', () => {});
+			it('should compact values from the collection', () => {
+				this.primitives.push(false);
+				assert.notInclude(this.elements.compact(), false);
+			});
 		});
 
-		// TODO: Needs special treatment to mutate internal elements array
-		describe('sortBy()', () => {});
+		describe('sortBy()', () => {
+			it('should sort elements', () => {
+				this.elements.sortBy((element) => element.value < 3);
+				assert.equal(this.elements.at(0).value, 3);
+				assert.equal(this.elements.at(1).value, 1);
+				assert.equal(this.elements.at(2).value, 2);
+			});
+		});
 
-		// TODO: Needs special treatment to mutate internal elements array
-		describe('shuffle()', () => {});
+		describe('shuffle()', () => {
+			xit('should shuffle the elements', () => {});
+		});
 	});
 });

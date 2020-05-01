@@ -7,7 +7,7 @@ import { PipelineCommand } from 'common/pipeline-command';
 import Collection from 'utils/adt/collection';
 import * as debug from 'utils/debug/debug';
 
-describe('class PipelineCommand', function() {
+describe.skip('class PipelineCommand', function() {
 	describe('constructor()', () => {
 		it('should instantiate class', () => {
 			this.command = new PipelineCommand();
