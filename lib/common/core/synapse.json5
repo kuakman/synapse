@@ -2,6 +2,7 @@
 	"synapse": {
 		"source": "./src",
 		"target": "./public",
+		"scripts": {},
 		"environments": {}
 	},
 	"banner": "Synapse <%= version %><%= !_.isUndefined(url) ? (' | ' + url) : '' %> | License: MIT - <%= year %>\n",

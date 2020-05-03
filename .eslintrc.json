@@ -42,6 +42,7 @@
         "new-cap": ["error", { "newIsCap": false, "capIsNew": false }],
         "one-var": [2, { "uninitialized": "always" }],
         "no-use-before-define": ["error", { "variables": false, "functions": true, "classes": true }],
+        "@typescript-eslint/triple-slash-reference": ["error", { "path": "always", "types": "always", "lib": "never" }],
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-use-before-define": "off",

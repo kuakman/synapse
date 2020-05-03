@@ -7,9 +7,6 @@ import { SynapseCommand } from 'common/synapse-command';
 import Core from 'common/core/core';
 import Collection from 'utils/adt/collection';
 import colors from 'ansi-colors';
-import ux from 'cli-ux';
-import * as utils from 'utils/utils';
-import * as debug from 'utils/debug/debug';
 
 describe('class SynapseCommand', function() {
 	beforeEach(() => {
