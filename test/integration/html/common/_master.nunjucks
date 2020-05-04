@@ -1,0 +1,13 @@
+<!doctype HTML>
+<html lang="en">
+	<head>
+		<title>{% block title %} Default Title {% endblock %}</title>
+		<script src="/js/libraries/libraries-prod.js"></script>
+		<script src="/js/libraries/libraries-{{ env }}.js"></script>
+	</head>
+	<body>
+		<div id="main"></div>
+		<span>Version: {{ version }}</span>
+		{% block scripts %}{% endblock %}}
+	</body>
+</html>

@@ -1,0 +1,6 @@
+{
+	"extend": "testing:coverage-nyc",
+	"devDependencies": [
+		"jest"
+	]
+}

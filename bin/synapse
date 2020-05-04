@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+require('@babel/register');
+require('json5/lib/register');
+require('@oclif/command').run()
+    .then(require('@oclif/command/flush'))
+    .catch(require('@oclif/errors/handle'));
+

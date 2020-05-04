@@ -1,0 +1,44 @@
+{
+	"synapse": {
+		"scripts": {
+			"pre-serve": ["./setup.js"],
+			"serve": ["nodemon ./serve.js"]
+		},
+		"environments": {
+			"all": {
+				"backend": {
+					"public": "./public",
+					"port": 3000,
+					"static": {
+						dotfiles: "ignore",
+						etag: false,
+						extensions: ["html"],
+						index: false,
+						maxAge: "id",
+						redirect: false
+					},
+					"templates": {
+						"path": "./html",
+						"srcExt": ".nunjucks",
+						"outExt": ".html",
+						"envOptions": {
+							watch: false,
+							noCache: false,
+							autoescape: true,
+							trimBlocks: true,
+							lstripBlocks: true
+						}
+					}
+				}
+			}
+		}
+	},
+	"dependencies": [
+		"nodemon",
+		"express",
+		"nunjucks"
+	],
+	"nodemonConfig": {
+		"watch": ["./src/**/*", "./test/**/*"]
+	}
+}

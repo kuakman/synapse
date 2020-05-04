@@ -1,0 +1,21 @@
+{
+	"synapse": {
+		"scripts": {
+			"serve": ["./serve.js"]
+		},
+		environments: {
+			"all": {
+				"backend": {
+					"public": "./public",
+					"rewrites": [{ "source": ":url", destination:  "html/:url.html" }],
+					"cleanUrls": true,
+					"port": 3000
+				}
+			}
+		}
+	},
+	"dependencies": [
+		"micro",
+		"serve-handler"
+	]
+}

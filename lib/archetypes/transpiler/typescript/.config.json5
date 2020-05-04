@@ -1,0 +1,10 @@
+{
+	"synapse": {
+		"scripts": {
+			"create": ["./config.js"]
+		}
+	},
+	"devDependencies": [
+		"typescript"
+	]
+}

@@ -1,0 +1,13 @@
+{
+	"synapse": {
+		"scripts": {
+			"create": ["./config.js"]
+		}
+	},
+	"devDependencies": [
+		"@babel/core",
+		"@babel/preset-env",
+		"@babel/register",
+		"babel-plugin-istanbul"
+	]
+}

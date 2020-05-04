@@ -1,0 +1,22 @@
+{
+  "name": "synapse-project-sample",
+  "version": "1.0.0",
+  "description": "Project Example that uses synapse",
+  "private": true,
+  "scripts": {
+    "test": "synapse run test",
+    "dev": "synapse run dev",
+    "prod": "synapse run prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "synapse",
+    "project",
+    "sample"
+  ],
+  "author": "Patricio Ferreira <3dimentionar@gmail.com>",
+  "license": "UNLICENSED"
+}
