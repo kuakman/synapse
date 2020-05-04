@@ -7,8 +7,8 @@
 	{ type: 'frontend', name: 'cloud', dependencies: ['react', 'redux', 'tachyons'] },
 	{ type: 'frontend', name: 'rinoa', dependencies: ['react', 'mobx', 'tachyons'] },
 	{ type: 'testing', name: 'coverage-nyc', dependencies: ['nyc'] },
-	{ type: 'testing', name: 'jest', dependencies: ['jest'], extend: 'testing:coverage-nyc' },
-	{ type: 'testing', name: 'mocha-sinon-chai', dependencies: ['mocha', 'sinon', 'chai'], extend: 'testing:coverage-nyc' },
+	{ type: 'testing', name: 'jest', dependencies: ['jest'], uses: ['testing:coverage-nyc'] },
+	{ type: 'testing', name: 'mocha-sinon-chai', dependencies: ['mocha', 'sinon', 'chai'], uses: ['testing:coverage-nyc'] },
 	{ type: 'utilities', name: 'synapse-realtime', dependencies: ['socket.io'], multiple: true },
 	{ type: 'utilities', name: 'error-reporting', dependencies: ['newrelic', 'bugsnag'], multiple: true },
 	{ type: 'utilities', name: 'google-analytics', dependencies: ['google-analytics'], multiple: true }
